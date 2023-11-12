@@ -24,6 +24,7 @@ dependencies:
   google_nav_bar: ^5.0.6
   line_icons: ^2.0.3
   image_picker: ^1.0.4
+  pinput: ^3.0.1
 
 
 
@@ -49,6 +50,7 @@ flutter:
 
   assets:
     - assets/images/
+    - assets/images/splash/
 
   fonts:
     - family: IranSans
