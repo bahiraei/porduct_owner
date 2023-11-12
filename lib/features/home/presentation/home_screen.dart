@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:porduct_owner/features/home/presentation/view/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,9 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return Directionality(
       textDirection: TextDirection.rtl,
       child: Scaffold(
-        body: const Column(
-          children: [],
-        ),
+        body: _getBody(),
         bottomNavigationBar: Container(
           decoration: BoxDecoration(
             color: Colors.white,
@@ -71,5 +70,16 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  _getBody() {
+    switch (_selectedIndex) {
+      case 0:
+        return const SizedBox();
+      case 1:
+        return const SizedBox();
+      case 2:
+        return const ProfileScreen();
+    }
   }
 }
