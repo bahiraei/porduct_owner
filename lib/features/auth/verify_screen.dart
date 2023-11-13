@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:pinput/pinput.dart';
 
@@ -127,7 +128,10 @@ class _VerifyScreenState extends State<VerifyScreen> {
                         ),
                         defaultPinTheme: defaultPinTheme,
                         focusNode: textPinNode,
-                      ),
+                      ).animate().fade().scale(
+                            delay: 100.ms,
+                            duration: 500.ms,
+                          ),
                     ),
                   ),
                   const Gap(64),

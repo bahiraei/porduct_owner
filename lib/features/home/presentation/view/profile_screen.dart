@@ -1,9 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:porduct_owner/core/core.dart';
+import 'package:porduct_owner/core/widgets/custom_button.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -20,74 +18,79 @@ class _ProfileScreenState extends State<ProfileScreen> {
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
 
-    return SafeArea(
-      child: ScrollConfiguration(
-        behavior: MyScrollBehavior(),
-        child: SingleChildScrollView(
-          child: Padding(
-            padding: const EdgeInsets.fromLTRB(24, 48, 24, 32),
-            child: SizedBox(
-              width: double.infinity,
-              height:
-                  size.height - MediaQuery.of(context).viewPadding.top - 170,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
+    return Scaffold(
+        backgroundColor: const Color(0xffe3e3e3),
+        body: Column(
+          children: [
+            Stack(
+              children: [
+                Container(
+                  height: 300,
+                  padding: EdgeInsets.fromLTRB(
+                      24, MediaQuery.of(context).viewPadding.top + 24, 24, 32),
+                  width: double.infinity,
+                  decoration: const BoxDecoration(
+                    color: Color(0xff001E4D),
+                    borderRadius: BorderRadius.vertical(
+                      bottom: Radius.circular(74),
+                    ),
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'assets/images/profile/header.png',
+                      ),
+                    ),
+                  ),
+                  child: Column(
                     children: [
-                      Container(
-                        padding: const EdgeInsets.all(8),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(100),
-                          color: Colors.indigo,
-                        ),
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(100),
-                              child: profileImagePath?.path != null
-                                  ? SizedBox(
-                                      width: 96,
-                                      height: 96,
-                                      child: Image.file(
-                                        File(profileImagePath!.path),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    )
-                                  : SizedBox(
-                                      width: 96,
-                                      height: 96,
-                                      child: Image.asset(
-                                        'assets/images/profile.png',
-                                        fit: BoxFit.fill,
-                                      ),
-                                    ),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'پروفایل کاربری',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500,
                             ),
-                            Positioned(
-                              right: 24,
-                              left: 24,
-                              bottom: -15,
-                              child: IconButton(
-                                icon: const Icon(
-                                  Icons.camera_alt,
+                          ),
+                        ],
+                      ),
+                      const Gap(16),
+                      Expanded(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: 86,
+                              height: 86,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(100),
+                                border: Border.all(
+                                  color: const Color(0xff556080),
+                                  width: 1,
                                 ),
-                                color: Colors.white.withOpacity(0.6),
-                                iconSize: 18,
-                                onPressed: () async {
-                                  // Pick an image
-                                  final temp = await _picker.pickImage(
-                                    source: ImageSource.gallery,
-                                    imageQuality: 100,
-                                  );
-
-                                  if (mounted && temp != null) {
-                                    setState(() {
-                                      profileImagePath = temp;
-                                    });
-                                  }
-                                },
+                              ),
+                              child: Image.asset(
+                                'assets/images/profile/profile.png',
+                                fit: BoxFit.cover,
+                              ),
+                            ),
+                            const Gap(6),
+                            const Text(
+                              'محمد جواد بحیرایی',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 16,
+                                fontWeight: FontWeight.w500,
+                              ),
+                            ),
+                            const Gap(6),
+                            Text(
+                              'نماینده',
+                              style: TextStyle(
+                                color: Colors.white.withOpacity(0.5),
+                                fontSize: 14,
+                                fontWeight: FontWeight.w500,
                               ),
                             ),
                           ],
@@ -95,157 +98,101 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       ),
                     ],
                   ),
-                  const Gap(14),
-                  const Text(
-                    'میلاد محمدی',
-                    style: TextStyle(
-                      fontSize: 16,
-                      fontWeight: FontWeight.w600,
-                    ),
-                  ),
-                  const Gap(44),
-                  const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
+                ),
+              ],
+            ),
+            Expanded(
+              child: Stack(
+                clipBehavior: Clip.none,
+                children: [
+                  Positioned(
+                    left: 64,
+                    right: 64,
+                    top: -30,
+                    bottom: 0,
                     child: Column(
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'شرکت:',
-                              style: TextStyle(
-                                fontSize: 14,
+                        Expanded(
+                          child: Container(
+                            height: 300,
+                            width: double.infinity,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(24),
+                            ),
+                            child: const Padding(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 24, vertical: 32),
+                              child: Column(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('کد ملی'),
+                                      Text('0022433449'),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('جنسیت'),
+                                      Text('مرد'),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('تاریخ تولد'),
+                                      Text('1378/04/19'),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('شرکت'),
+                                      Text('صنایع غذایی کوروش'),
+                                    ],
+                                  ),
+                                  Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      Text('شماره تماس'),
+                                      Text('09039060355'),
+                                    ],
+                                  ),
+                                ],
                               ),
                             ),
-                            Text(
-                              'صنایع غذایی کوروش',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(14),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'سمت:',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              'نماینده',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(14),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'تلفن تماس:',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              '09039060355',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(14),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'کد ملی:',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              '0022433449',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(14),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'جنسیت:',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              'مرد',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(14),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'تاریخ تولد:',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                            Text(
-                              '1378/06/15',
-                              style: TextStyle(
-                                fontSize: 14,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Gap(14),
-                      ],
-                    ),
-                  ),
-                  const Gap(44),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 32),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 44,
-                      child: ElevatedButton(
-                        style: ElevatedButton.styleFrom(
-                          backgroundColor: Colors.red,
-                        ),
-                        onPressed: () {},
-                        child: const Text(
-                          'خروج از حساب',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 14,
                           ),
                         ),
-                      ),
+                        const Gap(32),
+                        CustomButton(
+                          height: 50,
+                          backgroundColor: Colors.red,
+                          showShadow: false,
+                          onPressed: () {},
+                          child: const Text(
+                            'خروج از حساب',
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                        ),
+                        const Gap(24),
+                      ],
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-        ),
-      ),
-    );
+          ],
+        ));
   }
 }

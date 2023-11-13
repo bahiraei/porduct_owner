@@ -1,6 +1,7 @@
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/widgets/custom_button.dart';
 
@@ -15,14 +16,10 @@ class SplashScreen extends StatefulWidget {
 
 class _SplashScreenState extends State<SplashScreen> {
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Stack(
+        clipBehavior: Clip.none,
         fit: StackFit.expand,
         children: [
           SizedBox(
@@ -95,8 +92,18 @@ class _SplashScreenState extends State<SplashScreen> {
                     );
                   },
                   child: const Text('ورود'),
-                ),
-              ),
+                )
+                    .animate(delay: 2000.ms)
+                    .slideY(
+                      duration: 1000.ms,
+                      begin: 10,
+                      end: 0,
+                    )
+                    .fadeIn()
+                    .callback(
+                      callback: (_) => print('scale is done'),
+                    ),
+              )
             ],
           ),
         ],

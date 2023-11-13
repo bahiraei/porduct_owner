@@ -11,7 +11,30 @@ class LoginScreen extends StatefulWidget {
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-class _LoginScreenState extends State<LoginScreen> {
+class _LoginScreenState extends State<LoginScreen>
+    with SingleTickerProviderStateMixin {
+  late AnimationController _animationController;
+  late Animation<double> _heightAnimation;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _animationController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 1),
+    );
+
+    _heightAnimation = Tween<double>(
+      begin: 1000,
+      end: 300.0,
+    ).animate(
+      _animationController,
+    );
+
+    _animationController.forward();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,13 +48,18 @@ class _LoginScreenState extends State<LoginScreen> {
                   borderRadius: const BorderRadius.vertical(
                     bottom: Radius.circular(119),
                   ),
-                  child: SizedBox(
-                    height: 300,
-                    width: double.infinity,
-                    child: Image.asset(
-                      'assets/images/background.jpg',
-                      fit: BoxFit.cover,
-                    ),
+                  child: AnimatedBuilder(
+                    animation: _heightAnimation,
+                    builder: (BuildContext context, Widget? child) {
+                      return SizedBox(
+                        height: _heightAnimation.value,
+                        width: double.infinity,
+                        child: Image.asset(
+                          'assets/images/background.jpg',
+                          fit: BoxFit.cover,
+                        ),
+                      );
+                    },
                   ),
                 ),
                 Positioned(
