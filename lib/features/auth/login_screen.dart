@@ -26,16 +26,16 @@ class _LoginScreenState extends State<LoginScreen>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     );
 
     _fadeController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 2),
+      duration: const Duration(seconds: 1),
     );
 
     _heightAnimation = Tween<double>(
-      begin: 1200,
+      begin: 750.0,
       end: 300.0,
     ).animate(
       _animationController,
