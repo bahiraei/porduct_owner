@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             Text(
                               'نماینده',
                               style: TextStyle(
-                                color: Colors.white.withOpacity(0.5),
+                                color: Colors.white.withOpacity(0.7),
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
                               ),

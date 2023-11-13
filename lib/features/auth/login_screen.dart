@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -12,9 +14,11 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen>
-    with SingleTickerProviderStateMixin {
+    with TickerProviderStateMixin {
   late AnimationController _animationController;
+  late AnimationController _fadeController;
   late Animation<double> _heightAnimation;
+  late Animation<double> _fadeAnimation;
 
   @override
   void initState() {
@@ -22,17 +26,30 @@ class _LoginScreenState extends State<LoginScreen>
 
     _animationController = AnimationController(
       vsync: this,
-      duration: const Duration(seconds: 1),
+      duration: const Duration(seconds: 2),
+    );
+
+    _fadeController = AnimationController(
+      vsync: this,
+      duration: const Duration(seconds: 2),
     );
 
     _heightAnimation = Tween<double>(
-      begin: 1000,
+      begin: 1200,
       end: 300.0,
     ).animate(
       _animationController,
     );
 
+    _fadeAnimation = Tween<double>(
+      begin: 5.0,
+      end: 0.0,
+    ).animate(
+      _fadeController,
+    );
+
     _animationController.forward();
+    _fadeController.forward();
   }
 
   @override
@@ -51,12 +68,45 @@ class _LoginScreenState extends State<LoginScreen>
                   child: AnimatedBuilder(
                     animation: _heightAnimation,
                     builder: (BuildContext context, Widget? child) {
-                      return SizedBox(
-                        height: _heightAnimation.value,
-                        width: double.infinity,
-                        child: Image.asset(
-                          'assets/images/background.jpg',
-                          fit: BoxFit.cover,
+                      return ClipRRect(
+                        borderRadius: const BorderRadius.vertical(
+                          bottom: Radius.circular(32),
+                        ),
+                        child: SizedBox(
+                          width: double.infinity,
+                          height: _heightAnimation.value,
+                          child: Stack(
+                            children: [
+                              SizedBox(
+                                height: double.infinity,
+                                width: double.infinity,
+                                child: Image.asset(
+                                  'assets/images/background.jpg',
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              // Blurred Overlay
+                              SizedBox(
+                                child: AnimatedBuilder(
+                                  animation: _heightAnimation,
+                                  builder:
+                                      (BuildContext context, Widget? child) {
+                                    return BackdropFilter(
+                                      filter: ImageFilter.blur(
+                                        sigmaX: _fadeAnimation.value,
+                                        sigmaY: _fadeAnimation.value,
+                                      ), // Adjust the blur intensity
+                                      child: Container(
+                                        color: Colors.black.withOpacity(
+                                          0.4,
+                                        ), // Adjust the opacity as needed
+                                      ),
+                                    );
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       );
                     },

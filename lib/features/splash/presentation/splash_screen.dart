@@ -95,14 +95,12 @@ class _SplashScreenState extends State<SplashScreen> {
                 )
                     .animate(delay: 2000.ms)
                     .slideY(
-                      duration: 1000.ms,
+                      duration: 2000.ms,
                       begin: 10,
                       end: 0,
+                      curve: Curves.bounceIn,
                     )
-                    .fadeIn()
-                    .callback(
-                      callback: (_) => print('scale is done'),
-                    ),
+                    .fadeIn(),
               )
             ],
           ),
