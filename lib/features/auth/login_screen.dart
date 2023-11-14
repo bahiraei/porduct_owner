@@ -48,8 +48,8 @@ class _LoginScreenState extends State<LoginScreen>
       _fadeController,
     );
 
-    _animationController.forward();
-    _fadeController.forward();
+    /*_animationController.forward();
+    _fadeController.forward();*/
   }
 
   @override
