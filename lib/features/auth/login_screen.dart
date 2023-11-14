@@ -59,31 +59,26 @@ class _LoginScreenState extends State<LoginScreen>
             Stack(
               clipBehavior: Clip.none,
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    bottom: Radius.circular(119),
-                  ),
-                  child: AnimatedBuilder(
-                    animation: _heightAnimation,
-                    builder: (BuildContext context, Widget? child) {
-                      return SizedBox(
-                        width: double.infinity,
-                        height: _heightAnimation.value,
-                        child: Stack(
-                          children: [
-                            SizedBox(
-                              height: double.infinity,
-                              width: double.infinity,
-                              child: Image.asset(
-                                'assets/images/background.jpg',
-                                fit: BoxFit.cover,
-                              ),
+                AnimatedBuilder(
+                  animation: _heightAnimation,
+                  builder: (BuildContext context, Widget? child) {
+                    return SizedBox(
+                      width: double.infinity,
+                      height: _heightAnimation.value,
+                      child: Stack(
+                        children: [
+                          SizedBox(
+                            height: double.infinity,
+                            width: double.infinity,
+                            child: Image.asset(
+                              'assets/images/background.jpg',
+                              fit: BoxFit.cover,
                             ),
-                          ],
-                        ),
-                      );
-                    },
-                  ),
+                          ),
+                        ],
+                      ),
+                    );
+                  },
                 ),
                 Positioned(
                   left: 0,

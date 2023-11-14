@@ -21,9 +21,6 @@ dependencies:
   cupertino_icons: ^1.0.6
   flutter_svg: ^2.0.9
   gap: ^3.0.1
-  google_nav_bar: ^5.0.6
-  line_icons: ^2.0.3
-  image_picker: ^1.0.4
   pinput: ^3.0.1
   flutter_animate: ^4.2.0+1
 
