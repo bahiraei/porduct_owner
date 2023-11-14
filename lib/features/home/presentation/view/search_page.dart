@@ -66,12 +66,34 @@ class SearchPageView extends StatelessWidget {
             SizedBox(
               height: MediaQuery.of(context).size.height * 0.5,
               child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/search/no_result.png',
-                    width: 500,
-                    height: MediaQuery.of(context).size.height * 0.6 * 0.7,
+                  const Padding(
+                    padding: EdgeInsets.fromLTRB(24, 16, 24, 24),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        Text(
+                          'نتایح جستحو:',
+                          style: TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.w600,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Expanded(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Image.asset(
+                          'assets/images/search/no_result.png',
+                          width: 500,
+                          height:
+                              MediaQuery.of(context).size.height * 0.5 * 0.8,
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

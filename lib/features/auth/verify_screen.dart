@@ -44,17 +44,12 @@ class _VerifyScreenState extends State<VerifyScreen> {
             Stack(
               clipBehavior: Clip.none,
               children: [
-                ClipRRect(
-                  borderRadius: const BorderRadius.vertical(
-                    bottom: Radius.circular(119),
-                  ),
-                  child: SizedBox(
-                    height: 300,
-                    width: double.infinity,
-                    child: Image.asset(
-                      'assets/images/background.jpg',
-                      fit: BoxFit.cover,
-                    ),
+                SizedBox(
+                  height: 300,
+                  width: double.infinity,
+                  child: Image.asset(
+                    'assets/images/background.jpg',
+                    fit: BoxFit.cover,
                   ),
                 ),
                 Positioned(

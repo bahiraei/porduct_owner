@@ -66,45 +66,20 @@ class _LoginScreenState extends State<LoginScreen>
                   child: AnimatedBuilder(
                     animation: _heightAnimation,
                     builder: (BuildContext context, Widget? child) {
-                      return ClipRRect(
-                        borderRadius: const BorderRadius.vertical(
-                          bottom: Radius.circular(32),
-                        ),
-                        child: SizedBox(
-                          width: double.infinity,
-                          height: _heightAnimation.value,
-                          child: Stack(
-                            children: [
-                              SizedBox(
-                                height: double.infinity,
-                                width: double.infinity,
-                                child: Image.asset(
-                                  'assets/images/background.jpg',
-                                  fit: BoxFit.cover,
-                                ),
+                      return SizedBox(
+                        width: double.infinity,
+                        height: _heightAnimation.value,
+                        child: Stack(
+                          children: [
+                            SizedBox(
+                              height: double.infinity,
+                              width: double.infinity,
+                              child: Image.asset(
+                                'assets/images/background.jpg',
+                                fit: BoxFit.cover,
                               ),
-                              // Blurred Overlay
-                              /* SizedBox(
-                                child: AnimatedBuilder(
-                                  animation: _heightAnimation,
-                                  builder:
-                                      (BuildContext context, Widget? child) {
-                                    return BackdropFilter(
-                                      filter: ImageFilter.blur(
-                                        sigmaX: _fadeAnimation.value,
-                                        sigmaY: _fadeAnimation.value,
-                                      ), // Adjust the blur intensity
-                                      child: Container(
-                                        color: Colors.black.withOpacity(
-                                          0.4,
-                                        ), // Adjust the opacity as needed
-                                      ),
-                                    );
-                                  },
-                                ),
-                              ),*/
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       );
                     },
