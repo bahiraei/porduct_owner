@@ -35,7 +35,7 @@ class _LoginScreenState extends State<LoginScreen>
     );
 
     _heightAnimation = Tween<double>(
-      begin: 750.0,
+      begin: 300.0,
       end: 300.0,
     ).animate(
       _animationController,

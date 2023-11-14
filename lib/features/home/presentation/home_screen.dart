@@ -3,6 +3,8 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:line_icons/line_icons.dart';
 import 'package:porduct_owner/features/home/presentation/view/profile_screen.dart';
 
+import 'view/search_screen.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -70,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
   _getBody() {
     switch (_selectedIndex) {
       case 0:
-        return const SizedBox();
+        return const SearchScreen();
       case 1:
         return const SizedBox();
       case 2:
