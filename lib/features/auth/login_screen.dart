@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
@@ -86,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen>
                                 ),
                               ),
                               // Blurred Overlay
-                              SizedBox(
+                              /* SizedBox(
                                 child: AnimatedBuilder(
                                   animation: _heightAnimation,
                                   builder:
@@ -104,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen>
                                     );
                                   },
                                 ),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
