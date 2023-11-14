@@ -32,7 +32,8 @@ class SearchScreen extends StatelessWidget {
                   filled: true,
                   fillColor: Colors.grey.withOpacity(0.3),
                 ),
-                onTapOutside: (event) => FocusScope.of(context).unfocus(),
+                /*onTapOutside: (event) => FocusScope.of(context).unfocus(),*/
+                autofocus: false,
                 style: const TextStyle(
                   fontSize: 14,
                 ),
