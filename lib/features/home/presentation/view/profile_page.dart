@@ -4,14 +4,14 @@ import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:porduct_owner/core/widgets/custom_button.dart';
 
-class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+class ProfilePageView extends StatefulWidget {
+  const ProfilePageView({super.key});
 
   @override
-  State<ProfileScreen> createState() => _ProfileScreenState();
+  State<ProfilePageView> createState() => _ProfilePageViewState();
 }
 
-class _ProfileScreenState extends State<ProfileScreen> {
+class _ProfilePageViewState extends State<ProfilePageView> {
   final _picker = ImagePicker();
   XFile? profileImagePath;
 
