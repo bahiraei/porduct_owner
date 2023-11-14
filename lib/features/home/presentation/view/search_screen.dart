@@ -11,7 +11,7 @@ class SearchScreen extends StatelessWidget {
           24,
           MediaQuery.of(context).viewPadding.top + 24,
           24,
-          24,
+          0,
         ),
         child: SingleChildScrollView(
           child: Column(
@@ -38,15 +38,18 @@ class SearchScreen extends StatelessWidget {
                   fontSize: 14,
                 ),
               ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset(
-                    'assets/images/search/no_result.png',
-                    width: 500,
-                    height: 500,
-                  ),
-                ],
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.8,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/search/no_result.png',
+                      width: 500,
+                      height: MediaQuery.of(context).size.height * 0.8 * 0.7,
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
