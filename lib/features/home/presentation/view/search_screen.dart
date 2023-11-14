@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:gap/gap.dart';
 
 class SearchScreen extends StatelessWidget {
   const SearchScreen({super.key});
@@ -7,15 +8,16 @@ class SearchScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Padding(
-        padding: EdgeInsets.fromLTRB(
+        padding: const EdgeInsets.fromLTRB(
           24,
-          MediaQuery.of(context).viewPadding.top + 24,
+          0,
           24,
           0,
         ),
         child: SingleChildScrollView(
           child: Column(
             children: [
+              Gap(MediaQuery.of(context).viewPadding.top + 24),
               TextField(
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -39,7 +41,7 @@ class SearchScreen extends StatelessWidget {
                 ),
               ),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.8,
+                height: MediaQuery.of(context).size.height * 0.75,
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

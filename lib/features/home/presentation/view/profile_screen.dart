@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:porduct_owner/core/widgets/custom_button.dart';
@@ -74,7 +75,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               'assets/images/profile/profile.png',
                               fit: BoxFit.cover,
                             ),
-                          ),
+                          ).animate().scale(duration: 500.ms),
                           const Gap(6),
                           const Text(
                             'محمد جواد بحیرایی',
@@ -83,7 +84,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontSize: 16,
                               fontWeight: FontWeight.w500,
                             ),
-                          ),
+                          ).animate().scale(
+                                delay: 400.ms,
+                                duration: 500.ms,
+                              ),
                           const Gap(6),
                           Text(
                             'نماینده',
@@ -92,7 +96,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                               fontSize: 14,
                               fontWeight: FontWeight.w500,
                             ),
-                          ),
+                          ).animate().scale(
+                                delay: 800.ms,
+                                duration: 500.ms,
+                              ),
                         ],
                       ),
                     ),
