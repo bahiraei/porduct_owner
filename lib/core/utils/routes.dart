@@ -5,6 +5,7 @@ import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 
 import '../../features/home/presentation/home_screen.dart';
+import '../../features/ship/ship_screen.dart';
 
 class Routes {
   static final Routes _instance = Routes._internal();
@@ -18,6 +19,7 @@ class Routes {
   static const String login = "/login";
   static const String verify = "/verify";
   static const String ships = "/ships";
+  static const String ship = "/ship";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -35,6 +37,9 @@ class Routes {
 
       case ships:
         return screenRouting(const ShipsScreen());
+
+      case ship:
+        return screenRouting(const ShipScreen());
 
       default:
         return screenRouting(
