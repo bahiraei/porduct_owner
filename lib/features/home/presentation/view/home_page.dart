@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:porduct_owner/core/core.dart';
 
 class HomePageView extends StatelessWidget {
   const HomePageView({super.key});
@@ -118,7 +119,9 @@ class HomePageView extends StatelessWidget {
                         ),
                       ),
                       TextButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.of(context).pushNamed(Routes.ships);
+                        },
                         child: const Row(
                           children: [
                             Text(
