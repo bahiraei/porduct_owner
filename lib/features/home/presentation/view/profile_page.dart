@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:porduct_owner/core/widgets/custom_button.dart';
 
 class ProfilePageView extends StatefulWidget {
@@ -12,9 +11,6 @@ class ProfilePageView extends StatefulWidget {
 }
 
 class _ProfilePageViewState extends State<ProfilePageView> {
-  final _picker = ImagePicker();
-  XFile? profileImagePath;
-
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
@@ -28,7 +24,11 @@ class _ProfilePageViewState extends State<ProfilePageView> {
               Container(
                 height: 300,
                 padding: EdgeInsets.fromLTRB(
-                    24, MediaQuery.of(context).viewPadding.top + 24, 24, 32),
+                  24,
+                  MediaQuery.of(context).viewPadding.top + 24,
+                  24,
+                  32,
+                ),
                 width: double.infinity,
                 decoration: const BoxDecoration(
                   color: Color(0xff001E4D),
