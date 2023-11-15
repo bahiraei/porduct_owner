@@ -52,7 +52,6 @@ flutter:
     - assets/images/
     - assets/images/splash/
     - assets/images/profile/
-    - assets/images/search/
     - assets/images/home/
 
   fonts:
