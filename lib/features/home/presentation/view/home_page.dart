@@ -94,11 +94,10 @@ class HomePageView extends StatelessWidget {
                       ],
                     ),
                     Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/home/ship.png',
-                          ),
+                        Image.asset(
+                          'assets/images/home/ship.png',
                         ),
                       ],
                     )
