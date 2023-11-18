@@ -29,35 +29,33 @@ class _HomeScreenState extends State<HomeScreen> {
           ],
         ),
         child: SafeArea(
-          child: Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0, vertical: 8),
-            child: GNav(
-              rippleColor: Colors.grey[300]!,
-              hoverColor: Colors.grey[100]!,
-              gap: 8,
-              activeColor: Colors.black,
-              iconSize: 24,
-              padding: const EdgeInsets.symmetric(horizontal: 64, vertical: 12),
-              duration: const Duration(milliseconds: 400),
-              tabBackgroundColor: Colors.grey[100]!,
-              color: Colors.black,
-              tabs: const [
-                GButton(
-                  icon: LineIcons.home,
-                  text: 'خانه',
-                ),
-                GButton(
-                  icon: LineIcons.user,
-                  text: 'پروفایل',
-                ),
-              ],
-              selectedIndex: _selectedIndex,
-              onTabChange: (index) {
-                setState(() {
-                  _selectedIndex = index;
-                });
-              },
-            ),
+          child: GNav(
+            rippleColor: Colors.grey[300]!,
+            hoverColor: Colors.grey[100]!,
+            /*gap: 32,*/
+            activeColor: Colors.black,
+            iconSize: 24,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            padding: const EdgeInsets.symmetric(horizontal: 49, vertical: 20),
+            duration: const Duration(milliseconds: 400),
+            tabBackgroundColor: Colors.grey[100]!,
+            color: Colors.black,
+            tabs: const [
+              GButton(
+                icon: LineIcons.home,
+                text: 'خانه',
+              ),
+              GButton(
+                icon: LineIcons.user,
+                text: 'پروفایل',
+              ),
+            ],
+            selectedIndex: _selectedIndex,
+            onTabChange: (index) {
+              setState(() {
+                _selectedIndex = index;
+              });
+            },
           ),
         ),
       ),

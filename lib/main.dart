@@ -39,7 +39,7 @@ class MyApp extends StatelessWidget {
       ],
       locale: const Locale('fa', 'IR'),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
         useMaterial3: true,
         fontFamily: 'IranSans',
       ),

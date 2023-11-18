@@ -74,6 +74,7 @@ class HomePageView extends StatelessWidget {
               ),
               const Gap(32),
               Container(
+                height: 170,
                 padding: const EdgeInsets.fromLTRB(0, 16, 16, 0),
                 decoration: BoxDecoration(
                   color: const Color(0xff3A45ED),
@@ -87,6 +88,7 @@ class HomePageView extends StatelessWidget {
                   ],
                 ),
                 child: Column(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Row(
                       children: [
@@ -106,6 +108,8 @@ class HomePageView extends StatelessWidget {
                         Expanded(
                           child: Image.asset(
                             'assets/images/home/ship.png',
+                            alignment: Alignment.bottomLeft,
+                            height: 120,
                           ),
                         ),
                       ],
