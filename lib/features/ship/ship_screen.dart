@@ -126,7 +126,7 @@ class ShipScreen extends StatelessWidget {
                     color: Colors.white,
                     boxShadow: const [
                       BoxShadow(
-                        color: Colors.black12,
+                        color: Colors.black26,
                         blurRadius: 3,
                       )
                     ],
@@ -331,10 +331,11 @@ class ShipScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                const Gap(16),
                 Padding(
-                  padding: const EdgeInsets.fromLTRB(32, 0, 32, 16),
+                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
                   child: CustomButton(
+                    height: 54,
+                    showShadow: false,
                     onPressed: () {
                       Navigator.of(context).pushNamed(Routes.services);
                     },
