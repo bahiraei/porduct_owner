@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:porduct_owner/features/ships/dialog/ships_filter_bottom_sheet.dart';
 
 import '../../core/utils/routes.dart';
+import 'bottom_sheet/ships_filter_bottom_sheet.dart';
 
 class ShipsScreen extends StatelessWidget {
   const ShipsScreen({super.key});
