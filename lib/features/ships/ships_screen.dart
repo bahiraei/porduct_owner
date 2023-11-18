@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:line_icons/line_icons.dart';
-import 'package:porduct_owner/features/ships/dialog/ships_filter_dialog.dart';
+import 'package:porduct_owner/features/ships/dialog/ships_filter_bottom_sheet.dart';
 
 import '../../core/utils/routes.dart';
 
@@ -66,9 +66,11 @@ class ShipsScreen extends StatelessWidget {
                           ),
                         ),
                         onPressed: () async {
-                          await showDialog(
+                          showModalBottomSheet(
+                            isScrollControlled: true,
                             context: context,
-                            builder: (context) => const ShipsFilterDialog(),
+                            builder: (context) =>
+                                const ShipsFilterBottomSheet(),
                           );
                         },
                         child: const Row(
@@ -93,7 +95,6 @@ class ShipsScreen extends StatelessWidget {
                       const Gap(12),
                       Expanded(
                         child: TextField(
-                          /*   onTapOutside: (event) => FocusScope.of(context).unfocus(),*/
                           decoration: InputDecoration(
                             filled: true,
                             fillColor: Colors.white,
