@@ -21,19 +21,22 @@ class HomePageView extends StatelessWidget {
               Gap(MediaQuery.of(context).viewPadding.top + 24),
               Row(
                 children: [
-                  IconButton(
-                    padding: const EdgeInsets.all(0),
-                    onPressed: () {
+                  InkWell(
+                    onTap: () {
                       Navigator.of(context).pushNamed(
                         Routes.notifications,
                       );
                     },
-                    icon: const Icon(
-                      LineIcons.bell,
-                      size: 26,
-                      color: Color(0xff808080),
+                    child: const Badge(
+                      label: Text('4'),
+                      child: Icon(
+                        LineIcons.bell,
+                        size: 26,
+                        color: Color(0xff808080),
+                      ),
                     ),
                   ),
+                  const Gap(20),
                   Expanded(
                     child: TextField(
                       /*   onTapOutside: (event) => FocusScope.of(context).unfocus(),*/
@@ -136,9 +139,10 @@ class HomePageView extends StatelessWidget {
                                 color: Color(0xff3A45ED),
                               ),
                             ),
+                            Gap(2),
                             Icon(
-                              Icons.arrow_back_ios_new,
-                              size: 14,
+                              Icons.arrow_forward_ios_rounded,
+                              size: 12,
                               color: Color(0xff3A45ED),
                             ),
                           ],
