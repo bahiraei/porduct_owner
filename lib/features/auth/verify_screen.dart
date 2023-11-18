@@ -107,7 +107,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                     child: Directionality(
                       textDirection: TextDirection.ltr,
                       child: Pinput(
-                        autofocus: true,
+                        autofocus: false,
                         keyboardType: TextInputType.number,
                         pinputAutovalidateMode: PinputAutovalidateMode.onSubmit,
                         androidSmsAutofillMethod:
