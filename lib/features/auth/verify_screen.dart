@@ -62,6 +62,7 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       Container(
                         width: 100,
                         height: 100,
+                        padding: const EdgeInsets.all(24),
                         decoration: BoxDecoration(
                           gradient: const LinearGradient(
                             colors: [
