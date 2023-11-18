@@ -1,9 +1,8 @@
+import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
-import 'package:porduct_owner/core/widgets/custom_button.dart';
 
 import '../../../core/utils/routes.dart';
 
@@ -15,6 +14,19 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+
+    Future.delayed(const Duration(seconds: 3), () {
+      // Navigate to the login screen
+      Navigator.pushReplacementNamed(
+        context,
+        Routes.login,
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -47,65 +59,47 @@ class _SplashScreenState extends State<SplashScreen> {
             ),
           ),
 
-          Column(
-            children: [
-              Expanded(
-                child: Padding(
-                  padding: EdgeInsets.fromLTRB(
-                    32,
-                    MediaQuery.of(context).size.height * 0.4,
-                    32,
-                    0,
-                  ),
-                  child: Column(
-                    children: [
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Image.asset(
-                            'assets/images/splash/splashTitle.png',
-                          ),
-                          const Gap(8),
-                          const Text(
-                            'اپلیکیشن صاحبان کالا',
-                            style: TextStyle(
-                              fontSize: 22,
-                              color: Colors.white,
-                            ),
-                          ),
-                        ],
-                      )
-                    ],
-                  ),
+          Positioned(
+            left: 0,
+            right: 0,
+            top: 0,
+            bottom: 0,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.asset(
+                      'assets/images/splash/splashLogo.png',
+                      width: 120,
+                      height: 120,
+                    ),
+                  ],
                 ),
-              ),
-              Padding(
-                padding: const EdgeInsets.fromLTRB(48, 48, 48, 64),
-                child: CustomButton(
-                  borderRadius: 23,
-                  backgroundColor: Colors.white,
-                  showShadow: false,
-                  onPressed: () {
-                    Navigator.pushNamed(
-                      context,
-                      Routes.login,
-                    );
-                  },
-                  child: const Text('ورود'),
-                )
-                    .animate(delay: 2000.ms)
-                    .slideY(
-                      duration: 2000.ms,
-                      begin: 10,
-                      end: 0,
-                      curve: Curves.bounceIn,
-                    )
-                    .fadeIn(),
-              )
-            ],
+                const Gap(24),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'اپلیکیشن صاحبان کالا',
+                      style: TextStyle(
+                        fontSize: 22,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ],
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
   }
 }
