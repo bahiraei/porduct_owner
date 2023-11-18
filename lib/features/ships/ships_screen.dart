@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:porduct_owner/features/ships/dialog/ships_filter_dialog.dart';
 
 import '../../core/utils/routes.dart';
 
@@ -64,7 +65,12 @@ class ShipsScreen extends StatelessWidget {
                             vertical: 4,
                           ),
                         ),
-                        onPressed: () {},
+                        onPressed: () async {
+                          await showDialog(
+                            context: context,
+                            builder: (context) => const ShipsFilterDialog(),
+                          );
+                        },
                         child: const Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
