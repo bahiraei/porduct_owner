@@ -82,7 +82,14 @@ class HomePageView extends StatelessWidget {
                   height: 170,
                   padding: const EdgeInsets.fromLTRB(0, 16, 16, 0),
                   decoration: BoxDecoration(
-                    color: const Color(0xff3A45ED),
+                    gradient: const LinearGradient(
+                      begin: Alignment.topRight,
+                      end: Alignment.bottomLeft,
+                      colors: [
+                        Color(0xFF001E4D),
+                        Color(0xFF4080B0),
+                      ],
+                    ),
                     borderRadius: BorderRadius.circular(27),
                     boxShadow: const [
                       BoxShadow(

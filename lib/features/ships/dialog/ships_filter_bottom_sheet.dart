@@ -13,7 +13,7 @@ class ShipsFilterBottomSheet extends StatefulWidget {
 class _ShipsFilterBottomSheetState extends State<ShipsFilterBottomSheet> {
   String selectedBandar = 'انزلی';
   String selectedOperationStatus = 'درحال انجام';
-  Jalali? selectedDate;
+  JalaliRange? selectedDate;
 
   @override
   Widget build(BuildContext context) {
@@ -255,7 +255,7 @@ class _ShipsFilterBottomSheetState extends State<ShipsFilterBottomSheet> {
                             const Row(
                               children: [
                                 Text(
-                                  'شروع عملیات از:',
+                                  'بازه عملیات:',
                                   style: TextStyle(
                                     fontSize: 16,
                                     fontWeight: FontWeight.w400,
@@ -268,10 +268,19 @@ class _ShipsFilterBottomSheetState extends State<ShipsFilterBottomSheet> {
                               children: [
                                 ElevatedButton(
                                   onPressed: () async {
-                                    Jalali? picked =
-                                        await showPersianDatePicker(
+                                    var picked =
+                                        await showPersianDateRangePicker(
                                       context: context,
-                                      initialDate: Jalali.now(),
+                                      initialEntryMode:
+                                          PDatePickerEntryMode.input,
+                                      initialDateRange: JalaliRange(
+                                        start: DateTime.now()
+                                            .subtract(const Duration(days: 10))
+                                            .toJalali(),
+                                        end: DateTime.now()
+                                            .subtract(const Duration(days: 5))
+                                            .toJalali(),
+                                      ),
                                       firstDate: Jalali(1385, 8),
                                       lastDate: DateTime.now().toJalali(),
                                     );
@@ -286,8 +295,9 @@ class _ShipsFilterBottomSheetState extends State<ShipsFilterBottomSheet> {
                                   child: Align(
                                     alignment: Alignment.center,
                                     child: Text(
-                                      selectedDate?.formatCompactDate() ??
-                                          'انتخاب نشده',
+                                      selectedDate != null
+                                          ? "${selectedDate?.start.formatCompactDate()} الی ${selectedDate?.end.formatCompactDate()}"
+                                          : 'انتخاب نشده',
                                       style: const TextStyle(
                                         fontSize: 16,
                                         fontWeight: FontWeight.w400,

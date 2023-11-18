@@ -1,6 +1,9 @@
 import 'package:circular_charts/circular_charts.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:porduct_owner/core/widgets/widgets.dart';
+
+import '../../core/utils/routes.dart';
 
 class ShipScreen extends StatelessWidget {
   const ShipScreen({super.key});
@@ -326,6 +329,21 @@ class ShipScreen extends StatelessWidget {
                         ],
                       ),
                     ],
+                  ),
+                ),
+                const Gap(16),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(32, 0, 32, 16),
+                  child: CustomButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(Routes.services);
+                    },
+                    child: const Text(
+                      'سرویس های انجام شده',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
                 ),
               ],
