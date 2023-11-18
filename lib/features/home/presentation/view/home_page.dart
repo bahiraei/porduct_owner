@@ -23,7 +23,11 @@ class HomePageView extends StatelessWidget {
                 children: [
                   IconButton(
                     padding: const EdgeInsets.all(0),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(
+                        Routes.notifications,
+                      );
+                    },
                     icon: const Icon(
                       LineIcons.bell,
                       size: 26,
@@ -96,11 +100,13 @@ class HomePageView extends StatelessWidget {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
-                        Image.asset(
-                          'assets/images/home/ship.png',
+                        Expanded(
+                          child: Image.asset(
+                            'assets/images/home/ship.png',
+                          ),
                         ),
                       ],
-                    )
+                    ),
                   ],
                 ),
               ),
