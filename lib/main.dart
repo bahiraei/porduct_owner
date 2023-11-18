@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:porduct_owner/features/home/presentation/home_screen.dart';
 
 import 'core/core.dart';
-import 'features/splash/presentation/splash_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,11 +40,13 @@ class MyApp extends StatelessWidget {
       locale: const Locale('fa', 'IR'),
       theme: ThemeData(
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        primaryColor: Colors.blue,
+        brightness: Brightness.light,
         useMaterial3: true,
         fontFamily: 'IranSans',
       ),
       onGenerateRoute: route.generateRoute,
-      home: const SplashScreen(),
+      home: const HomeScreen(),
     );
   }
 }
