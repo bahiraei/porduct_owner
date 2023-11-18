@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:porduct_owner/features/auth/login_screen.dart';
 import 'package:porduct_owner/features/auth/verify_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
+import 'package:porduct_owner/features/overview/overview_screen.dart';
 import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 
@@ -22,6 +23,7 @@ class Routes {
   static const String ships = "/ships";
   static const String ship = "/ship";
   static const String notifications = "/notifications";
+  static const String overview = "/overview";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -45,6 +47,9 @@ class Routes {
 
       case notifications:
         return screenRouting(const NotificationsScreen());
+
+      case overview:
+        return screenRouting(const OverviewScreen());
 
       default:
         return screenRouting(

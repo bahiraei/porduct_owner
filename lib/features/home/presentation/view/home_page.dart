@@ -73,48 +73,54 @@ class HomePageView extends StatelessWidget {
                 ],
               ),
               const Gap(32),
-              Container(
-                height: 170,
-                padding: const EdgeInsets.fromLTRB(0, 16, 16, 0),
-                decoration: BoxDecoration(
-                  color: const Color(0xff3A45ED),
-                  borderRadius: BorderRadius.circular(27),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Colors.black38,
-                      blurRadius: 6,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    const Row(
-                      children: [
-                        Text(
-                          'نمای کل',
-                          style: TextStyle(
-                            fontSize: 21,
-                            color: Colors.white,
-                            fontWeight: FontWeight.bold,
+              InkWell(
+                borderRadius: BorderRadius.circular(27),
+                onTap: () {
+                  Navigator.of(context).pushNamed(Routes.overview);
+                },
+                child: Container(
+                  height: 170,
+                  padding: const EdgeInsets.fromLTRB(0, 16, 16, 0),
+                  decoration: BoxDecoration(
+                    color: const Color(0xff3A45ED),
+                    borderRadius: BorderRadius.circular(27),
+                    boxShadow: const [
+                      BoxShadow(
+                        color: Colors.black38,
+                        blurRadius: 6,
+                        offset: Offset(0, 3),
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      const Row(
+                        children: [
+                          Text(
+                            'نمای کل',
+                            style: TextStyle(
+                              fontSize: 21,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        Expanded(
-                          child: Image.asset(
-                            'assets/images/home/ship.png',
-                            alignment: Alignment.bottomLeft,
-                            height: 120,
+                        ],
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          Expanded(
+                            child: Image.asset(
+                              'assets/images/home/ship.png',
+                              alignment: Alignment.bottomLeft,
+                              height: 120,
+                            ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const Gap(32),
