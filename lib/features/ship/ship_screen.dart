@@ -1,7 +1,7 @@
-import 'package:circular_charts/circular_charts.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/widgets/widgets.dart';
+import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../core/utils/routes.dart';
 
@@ -11,6 +11,16 @@ class ShipScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
+
+    List<_PieData> pieData = [];
+
+    pieData.add(
+      _PieData('انجام شده', 60, '60 درصد'),
+    );
+    pieData.add(
+      _PieData('باقی مانده', 40, '40 درصد'),
+    );
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
@@ -51,69 +61,47 @@ class ShipScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                Stack(
-                  children: [
-                    CircularChart(
-                      isShowingCentreCircle: false,
-                      centreCircleTitle: 'کالاها',
-                      centreCircleSubtitleTextStyle: const TextStyle(
-                        fontFamily: 'IranSans',
-                        color: Colors.black,
-                      ),
-                      centreCirclePercentageTextStyle: const TextStyle(
-                        fontFamily: 'IranSans',
-                        color: Colors.black,
-                      ),
-                      overAllPercentage: 100,
-                      animationTime: 800,
-                      chartHeight: 300,
-                      chartWidth: size.width,
-                      pieChartChildNames: const [
-                        "ذرت",
-                        "گندم",
-                        "جو",
-                      ],
-                      pieChartEndColors: const [
-                        Color(0xfffc7e00),
-                        Color(0xfffc6076),
-                        Color(0xff007ced),
-                        Color(0xff4e9b01),
-                        Color(0xff009efd),
-                        Color(0xffff4b63),
-                      ],
-                      pieChartStartColors: const [
-                        Color(0xffffd200),
-                        Color(0xffff9231),
-                        Color(0xff00beeb),
-                        Color(0xff92d108),
-                        Color(0xff00dbbe),
-                        Color(0xfff280ff),
-                      ],
-                      pieChartPercentages: const [
-                        60,
-                        20,
-                        20,
-                      ],
-                      isShowingLegend: true,
-                    ),
-                    const Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 10,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'نمودار تفکیک کالا',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
+                SizedBox(
+                  height: 200,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          flex: 2,
+                          child: SfCircularChart(
+                            margin: const EdgeInsets.all(0),
+                            legend: const Legend(
+                              isVisible: true,
+                              isResponsive: true,
                             ),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            palette: const [
+                              Colors.blue,
+                              Colors.amber,
+                            ],
+                            series: <PieSeries<_PieData, String>>[
+                              PieSeries<_PieData, String>(
+                                explode: true,
+                                explodeIndex: 0,
+                                explodeOffset: '10%',
+                                dataSource: pieData,
+                                xValueMapper: (_PieData data, _) => data.xData,
+                                yValueMapper: (_PieData data, _) => data.yData,
+                                dataLabelMapper: (_PieData data, _) =>
+                                    data.text,
+                                dataLabelSettings: const DataLabelSettings(
+                                  isVisible: true,
+                                ),
+                              ),
+                            ],
                           ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
-                  ],
+                  ),
                 ),
                 Container(
                   padding: const EdgeInsets.symmetric(
@@ -354,4 +342,12 @@ class ShipScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+class _PieData {
+  _PieData(this.xData, this.yData, [this.text = '-']);
+
+  final String xData;
+  final num yData;
+  final String text;
 }
