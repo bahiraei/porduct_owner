@@ -1,3 +1,4 @@
+import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/widgets/widgets.dart';
@@ -5,8 +6,15 @@ import 'package:syncfusion_flutter_charts/charts.dart';
 
 import '../../core/utils/routes.dart';
 
-class ShipScreen extends StatelessWidget {
+class ShipScreen extends StatefulWidget {
   const ShipScreen({super.key});
+
+  @override
+  State<ShipScreen> createState() => _ShipScreenState();
+}
+
+class _ShipScreenState extends State<ShipScreen> {
+  String isChartPerPercent = 'درصد';
 
   @override
   Widget build(BuildContext context) {
@@ -14,11 +22,20 @@ class ShipScreen extends StatelessWidget {
 
     List<_PieData> pieData = [];
 
+    List<_PieData> pieDataTonnage = [];
+
     pieData.add(
-      _PieData('انجام شده', 60, '60 درصد'),
+      _PieData('انجام شده', 60, '60%'),
     );
     pieData.add(
-      _PieData('باقی مانده', 40, '40 درصد'),
+      _PieData('باقی مانده', 40, '40%'),
+    );
+
+    pieDataTonnage.add(
+      _PieData('انجام شده', 5000, '5000'),
+    );
+    pieDataTonnage.add(
+      _PieData('باقی مانده', 1200, '1200'),
     );
 
     return Scaffold(
@@ -61,17 +78,83 @@ class ShipScreen extends StatelessWidget {
             ),
             Column(
               children: [
-                SizedBox(
-                  height: 200,
+                Row(
+                  children: [
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 48),
+                        child: DropdownButtonFormField2<String>(
+                          style: Theme.of(context).textTheme.titleSmall,
+                          isExpanded: true,
+                          decoration: InputDecoration(
+                            // Add Horizontal padding using menuItemStyleData.padding so it matches
+                            // the menu padding when button's width is not specified.
+                            contentPadding:
+                                const EdgeInsets.fromLTRB(8, 4, 0, 0),
+                            border: OutlineInputBorder(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            // Add more decoration..
+                          ),
+                          hint: const Text(
+                            'نوع گزارش',
+                          ),
+                          items: ['درصد', 'تناژ']
+                              .map((bandar) => DropdownMenuItem<String>(
+                                    alignment: Alignment.centerRight,
+                                    value: bandar,
+                                    child: Text(
+                                      bandar.toString(),
+                                    ),
+                                  ))
+                              .toList(),
+                          validator: (value) {
+                            if (value == null) {
+                              return 'لطفا واحد را انتخاب کنید';
+                            }
+                            return null;
+                          },
+                          onChanged: (bandar) {
+                            setState(() {
+                              isChartPerPercent = bandar!;
+                            });
+                          },
+                          buttonStyleData: const ButtonStyleData(
+                            padding: EdgeInsets.only(right: 8),
+                          ),
+                          value: isChartPerPercent,
+                          iconStyleData: const IconStyleData(
+                            icon: Icon(
+                              Icons.arrow_drop_down,
+                              color: Colors.black45,
+                            ),
+                            iconSize: 24,
+                          ),
+                          dropdownStyleData: DropdownStyleData(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(15),
+                            ),
+                            direction: DropdownDirection.textDirection,
+                          ),
+                          menuItemStyleData: const MenuItemStyleData(
+                            padding: EdgeInsets.symmetric(horizontal: 16),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Visibility(
+                  visible: isChartPerPercent == 'درصد',
                   child: Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16),
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Expanded(
-                          flex: 2,
-                          child: SfCircularChart(
+                    child: SizedBox(
+                      height: 200,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SfCircularChart(
                             margin: const EdgeInsets.all(0),
                             legend: const Legend(
                               isVisible: true,
@@ -98,8 +181,50 @@ class ShipScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+                Visibility(
+                  visible: isChartPerPercent != 'درصد',
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16),
+                    child: SizedBox(
+                      height: 200,
+                      child: Row(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          SfCircularChart(
+                            margin: const EdgeInsets.all(0),
+                            legend: const Legend(
+                              isVisible: true,
+                              isResponsive: true,
+                            ),
+                            tooltipBehavior: TooltipBehavior(enable: true),
+                            palette: const [
+                              Colors.blue,
+                              Colors.amber,
+                            ],
+                            series: <PieSeries<_PieData, String>>[
+                              PieSeries<_PieData, String>(
+                                explode: true,
+                                explodeIndex: 0,
+                                explodeOffset: '10%',
+                                dataSource: pieDataTonnage,
+                                xValueMapper: (_PieData data, _) => data.xData,
+                                yValueMapper: (_PieData data, _) => data.yData,
+                                dataLabelMapper: (_PieData data, _) =>
+                                    data.text,
+                                dataLabelSettings: const DataLabelSettings(
+                                  isVisible: true,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),
@@ -143,54 +268,9 @@ class ShipScreen extends StatelessWidget {
                         ],
                       ),
                       Gap(5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'تناژ تخلیه شده',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Flexible(
-                            child: Text(
-                              '3000',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Gap(5),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Text(
-                            'تناژ باقی مانده',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                          Flexible(
-                            child: Text(
-                              '3200',
-                              style: TextStyle(
-                                fontSize: 13,
-                                fontWeight: FontWeight.w400,
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                      Gap(5),
                       Divider(
                         color: Colors.black12,
                       ),
-                      Gap(5),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
