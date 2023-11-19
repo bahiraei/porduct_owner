@@ -184,7 +184,7 @@ class _ShipsFilterBottomSheetState extends State<ShipsFilterBottomSheet> {
                                 hint: const Text(
                                   'وضعیت عملیات',
                                 ),
-                                items: ['درحال انجام', 'متوقف شده', 'تکمیل شده']
+                                items: ['درحال انجام', 'تکمیل شده']
                                     .map((status) => DropdownMenuItem<String>(
                                           alignment: Alignment.centerRight,
                                           value: status,
