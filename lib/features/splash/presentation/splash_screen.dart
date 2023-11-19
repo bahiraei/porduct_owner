@@ -1,10 +1,10 @@
-import 'dart:async';
 import 'dart:ui';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 
-import '../../../core/utils/routes.dart';
+import '../../../core/core.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
 
-    Future.delayed(const Duration(seconds: 3), () {
+    Future.delayed(const Duration(seconds: 5), () {
       // Navigate to the login screen
       Navigator.pushReplacementNamed(
         context,
@@ -76,20 +76,46 @@ class _SplashScreenState extends State<SplashScreen> {
                       height: 120,
                     ),
                   ],
-                ),
-                const Gap(24),
+                ).animate().scale(delay: 500.ms).fadeIn(),
+                const Gap(8),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'اپلیکیشن صاحبان کالا',
+                      'شرکت آریا بنادر ایرانیان',
                       style: TextStyle(
                         fontSize: 22,
                         color: Colors.white,
                       ),
                     ),
                   ],
-                ),
+                ).animate().slideY(delay: 1000.ms).fadeIn(),
+                const Gap(8),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'اپلیکیشن صاحبان کالا',
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ).animate().slideY(delay: 1500.ms).fadeIn(),
+                const Gap(8),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'Future Per Network',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ).animate().slideY(delay: 2000.ms).fadeIn(),
               ],
             ),
           ),
