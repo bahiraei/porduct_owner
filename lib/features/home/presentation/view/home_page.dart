@@ -55,7 +55,11 @@ class HomePageView extends StatelessWidget {
                           horizontal: 16,
                         ),
                         suffixIcon: IconButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.of(context).pushNamed(
+                              Routes.ships,
+                            );
+                          },
                           icon: const Icon(
                             Icons.search,
                             color: Color(0xff808080),
