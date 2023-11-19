@@ -76,7 +76,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       height: 120,
                     ),
                   ],
-                ).animate().scale(delay: 500.ms).fadeIn(),
+                ).animate().scale(delay: 700.ms).fadeIn(),
                 const Gap(8),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -89,7 +89,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                     ),
                   ],
-                ).animate().slideY(delay: 1000.ms).fadeIn(),
+                ).animate().slideY(delay: 1200.ms).fadeIn(),
                 const Gap(8),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -102,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                     ),
                   ],
-                ).animate().slideY(delay: 1500.ms).fadeIn(),
+                ).animate().slideY(delay: 1700.ms).fadeIn(),
                 const Gap(8),
                 const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -115,7 +115,7 @@ class _SplashScreenState extends State<SplashScreen> {
                       ),
                     ),
                   ],
-                ).animate().slideY(delay: 2000.ms).fadeIn(),
+                ).animate().slideY(delay: 2200.ms).fadeIn(),
               ],
             ),
           ),
