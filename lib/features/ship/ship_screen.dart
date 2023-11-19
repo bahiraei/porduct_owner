@@ -43,7 +43,7 @@ class ShipScreen extends StatelessWidget {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Text(
+                          SelectableText(
                             'پاناما - بندرانزلی',
                             style: TextStyle(
                               fontSize: 17,
@@ -124,7 +124,7 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'صاحب کالا',
                             style: TextStyle(
                               fontSize: 13,
@@ -132,7 +132,7 @@ class ShipScreen extends StatelessWidget {
                             ),
                           ),
                           Flexible(
-                            child: Text(
+                            child: SelectableText(
                               'سید حسین حسینی',
                               style: TextStyle(
                                 fontSize: 13,
@@ -150,14 +150,14 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'دسته بندی کالا',
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Text(
+                          SelectableText(
                             'فله',
                             style: TextStyle(
                               fontSize: 13,
@@ -174,14 +174,14 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'نام کالا',
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Text(
+                          SelectableText(
                             'ذرت',
                             style: TextStyle(
                               fontSize: 13,
@@ -198,14 +198,14 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'سرویس های کل',
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Text(
+                          SelectableText(
                             '256',
                             style: TextStyle(
                               fontSize: 13,
@@ -222,14 +222,14 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'تاریخ شروع عملیات',
                             style: TextStyle(
                               fontSize: 13,
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Text(
+                          SelectableText(
                             '1402/08/01',
                             style: TextStyle(
                               fontSize: 13,
@@ -246,7 +246,7 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'شرکت تجهیزاتی',
                             style: TextStyle(
                               fontSize: 13,
@@ -254,7 +254,7 @@ class ShipScreen extends StatelessWidget {
                             ),
                           ),
                           Flexible(
-                            child: Text(
+                            child: SelectableText(
                               'شرکت آریا بنادر ایرانیان',
                               style: TextStyle(
                                 fontSize: 13,
@@ -272,7 +272,7 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'شرکت انبارداری',
                             style: TextStyle(
                               fontSize: 13,
@@ -280,7 +280,7 @@ class ShipScreen extends StatelessWidget {
                             ),
                           ),
                           Flexible(
-                            child: Text(
+                            child: SelectableText(
                               'شرکت آریا بنادر ایرانیان',
                               style: TextStyle(
                                 fontSize: 13,
@@ -298,7 +298,7 @@ class ShipScreen extends StatelessWidget {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
-                          Text(
+                          SelectableText(
                             'شرکت حمل و نقل',
                             style: TextStyle(
                               fontSize: 13,
@@ -306,7 +306,7 @@ class ShipScreen extends StatelessWidget {
                             ),
                           ),
                           Flexible(
-                            child: Text(
+                            child: SelectableText(
                               'شرکت آریا بنادر ایرانیان',
                               style: TextStyle(
                                 fontSize: 13,
@@ -327,7 +327,7 @@ class ShipScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).pushNamed(Routes.services);
                     },
-                    child: const Text(
+                    child: const SelectableText(
                       'سرویس های انجام شده',
                       style: TextStyle(
                         color: Colors.white,

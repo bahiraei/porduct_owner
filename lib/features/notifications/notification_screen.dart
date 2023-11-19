@@ -75,12 +75,14 @@ class NotificationsScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                              const Flexible(
-                                child: Text(
-                                  'عنوان پیام',
-                                  style: TextStyle(
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.w500,
+                              const SelectionArea(
+                                child: Flexible(
+                                  child: SelectableText(
+                                    'عنوان پیام',
+                                    style: TextStyle(
+                                      fontSize: 15,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -95,7 +97,7 @@ class NotificationsScreen extends StatelessWidget {
                           const Row(
                             children: [
                               Flexible(
-                                child: Text(
+                                child: SelectableText(
                                   'توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی',
                                   style: TextStyle(
                                     fontSize: 13,
@@ -115,7 +117,7 @@ class NotificationsScreen extends StatelessWidget {
                                 size: 20,
                               ),
                               Gap(2),
-                              Text(
+                              SelectableText(
                                 '1400/02/02',
                                 style: TextStyle(
                                   fontSize: 13,
