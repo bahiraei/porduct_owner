@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:porduct_owner/features/account_type/account_type_screen.dart';
 import 'package:porduct_owner/features/auth/login_screen.dart';
 import 'package:porduct_owner/features/auth/verify_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
@@ -26,6 +27,7 @@ class Routes {
   static const String notifications = "/notifications";
   static const String overview = "/overview";
   static const String services = "/services";
+  static const String accountType = "/accountType";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -55,6 +57,9 @@ class Routes {
 
       case services:
         return screenRouting(const ServicesScreen());
+
+      case accountType:
+        return screenRouting(const AccountTypeScreen());
 
       default:
         return screenRouting(

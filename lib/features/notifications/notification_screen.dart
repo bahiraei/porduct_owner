@@ -70,13 +70,13 @@ class NotificationsScreen extends StatelessWidget {
                           ),
                         ],
                       ),
-                      child: Column(
-                        children: [
-                          Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              const SelectionArea(
-                                child: Flexible(
+                      child: SelectionArea(
+                        child: Column(
+                          children: [
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                const Flexible(
                                   child: SelectableText(
                                     'عنوان پیام',
                                     style: TextStyle(
@@ -85,48 +85,48 @@ class NotificationsScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ),
-                              ),
-                              Icon(
-                                Icons.notifications,
-                                color: Colors.blue.withOpacity(0.95),
-                                size: 18,
-                              ),
-                            ],
-                          ),
-                          const Gap(12),
-                          const Row(
-                            children: [
-                              Flexible(
-                                child: SelectableText(
-                                  'توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی',
+                                Icon(
+                                  Icons.notifications,
+                                  color: Colors.blue.withOpacity(0.95),
+                                  size: 18,
+                                ),
+                              ],
+                            ),
+                            const Gap(12),
+                            const Row(
+                              children: [
+                                Flexible(
+                                  child: Text(
+                                    'توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی توضیحات پیام دریافتی',
+                                    style: TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                      height: 1.8,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const Gap(12),
+                            const Row(
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                Icon(
+                                  LineIcons.calendar,
+                                  size: 20,
+                                ),
+                                Gap(2),
+                                Text(
+                                  '1400/02/02',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400,
-                                    height: 1.8,
                                   ),
                                 ),
-                              ),
-                            ],
-                          ),
-                          const Gap(12),
-                          const Row(
-                            mainAxisAlignment: MainAxisAlignment.end,
-                            children: [
-                              Icon(
-                                LineIcons.calendar,
-                                size: 20,
-                              ),
-                              Gap(2),
-                              SelectableText(
-                                '1400/02/02',
-                                style: TextStyle(
-                                  fontSize: 13,
-                                  fontWeight: FontWeight.w400,
-                                ),
-                              ),
-                            ],
-                          ),
-                        ],
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
