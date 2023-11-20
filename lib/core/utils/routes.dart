@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:porduct_owner/features/account_type/account_type_screen.dart';
 import 'package:porduct_owner/features/auth/login_screen.dart';
 import 'package:porduct_owner/features/auth/verify_screen.dart';
+import 'package:porduct_owner/features/news/news_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
 import 'package:porduct_owner/features/overview/overview_screen.dart';
 import 'package:porduct_owner/features/ships/ships_screen.dart';
@@ -28,6 +29,7 @@ class Routes {
   static const String overview = "/overview";
   static const String services = "/services";
   static const String accountType = "/accountType";
+  static const String news = "/news";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -60,6 +62,9 @@ class Routes {
 
       case accountType:
         return screenRouting(const AccountTypeScreen());
+
+      case news:
+        return screenRouting(const NewsScreen());
 
       default:
         return screenRouting(
