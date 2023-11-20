@@ -64,7 +64,9 @@ class Routes {
         return screenRouting(const AccountTypeScreen());
 
       case news:
-        return screenRouting(const NewsScreen());
+        return screenRouting(
+          const NewsScreen(),
+        );
 
       default:
         return screenRouting(

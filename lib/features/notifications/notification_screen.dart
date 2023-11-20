@@ -219,88 +219,97 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   padding: const EdgeInsets.fromLTRB(16, 8, 16, 32),
                   itemCount: 10,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.only(bottom: 16),
-                      child: InkWell(
-                        borderRadius: BorderRadius.circular(12),
-                        onTap: () {
-                          Navigator.of(context).pushNamed(Routes.news);
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(12),
-                            boxShadow: Constants.shadow1,
-                          ),
-                          child: SelectionArea(
-                            child: Row(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topRight: Radius.circular(12),
-                                    bottomRight: Radius.circular(12),
+                    return InkWell(
+                      onTap: () {
+                        Navigator.of(context).pushNamed(Routes.news);
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(bottom: 16),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(12),
+                          onTap: () {
+                            debugPrint(' خبر شماره $index');
+                            Navigator.of(context).pushNamed(
+                              Routes.news,
+                            );
+                          },
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(12),
+                              boxShadow: Constants.shadow1,
+                            ),
+                            child: SelectionArea(
+                              child: Row(
+                                children: [
+                                  ClipRRect(
+                                    borderRadius: const BorderRadius.only(
+                                      topRight: Radius.circular(12),
+                                      bottomRight: Radius.circular(12),
+                                    ),
+                                    child: Image.asset(
+                                      'assets/images/background.jpg',
+                                      width: 120,
+                                      height: 120,
+                                      fit: BoxFit.cover,
+                                    ),
                                   ),
-                                  child: Image.asset(
-                                    'assets/images/background.jpg',
-                                    width: 120,
-                                    height: 120,
-                                    fit: BoxFit.cover,
-                                  ),
-                                ),
-                                const Expanded(
-                                  child: Column(
-                                    children: [
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 12),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceBetween,
-                                          children: [
-                                            Flexible(
-                                              child: SelectableText(
-                                                'عنوان خبر',
-                                                style: TextStyle(
-                                                  fontSize: 15,
-                                                  fontWeight: FontWeight.w500,
+                                  const Expanded(
+                                    child: Column(
+                                      children: [
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceBetween,
+                                            children: [
+                                              Flexible(
+                                                child: SelectableText(
+                                                  'عنوان خبر',
+                                                  style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.w500,
+                                                  ),
                                                 ),
                                               ),
-                                            ),
-                                            Text(
-                                              '1400/02/02',
-                                              style: TextStyle(
-                                                fontSize: 13,
-                                                fontWeight: FontWeight.w400,
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                      ),
-                                      Gap(12),
-                                      Padding(
-                                        padding: EdgeInsets.symmetric(
-                                            horizontal: 12),
-                                        child: Row(
-                                          children: [
-                                            Flexible(
-                                              child: Text(
-                                                'توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر ',
+                                              Text(
+                                                '1400/02/02',
                                                 style: TextStyle(
                                                   fontSize: 13,
                                                   fontWeight: FontWeight.w400,
-                                                  height: 1.8,
                                                 ),
-                                                maxLines: 2,
-                                                overflow: TextOverflow.ellipsis,
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
-                                      ),
-                                    ],
+                                        Gap(12),
+                                        Padding(
+                                          padding: EdgeInsets.symmetric(
+                                              horizontal: 12),
+                                          child: Row(
+                                            children: [
+                                              Flexible(
+                                                child: Text(
+                                                  'توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر توضیحات خبر ',
+                                                  style: TextStyle(
+                                                    fontSize: 13,
+                                                    fontWeight: FontWeight.w400,
+                                                    height: 1.8,
+                                                  ),
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
                           ),
                         ),
