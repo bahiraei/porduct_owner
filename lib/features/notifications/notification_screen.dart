@@ -221,6 +221,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                   itemBuilder: (context, index) {
                     return InkWell(
                       onTap: () {
+                        debugPrint(' خبر شماره $index');
                         Navigator.of(context).pushNamed(Routes.news);
                       },
                       child: Padding(

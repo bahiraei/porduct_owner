@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:porduct_owner/features/home/presentation/home_screen.dart';
 
 import 'core/core.dart';
+import 'features/news/news_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'IranSans',
       ),
       onGenerateRoute: route.generateRoute,
-      home: const HomeScreen(),
+      home: const NewsScreen(),
     );
   }
 }
