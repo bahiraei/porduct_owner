@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
+import 'package:porduct_owner/features/news/news_screen.dart';
 
 import 'core/core.dart';
 
@@ -46,7 +46,7 @@ class MyApp extends StatelessWidget {
         fontFamily: 'IranSans',
       ),
       onGenerateRoute: route.generateRoute,
-      home: const SplashScreen(),
+      home: const NewsScreen(),
     );
   }
 }
