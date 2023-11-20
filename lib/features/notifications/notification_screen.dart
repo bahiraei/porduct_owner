@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:line_icons/line_icons.dart';
+import 'package:porduct_owner/core/core.dart';
 
 import '../../core/consts/constans.dart';
 
@@ -222,7 +223,9 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                       padding: const EdgeInsets.only(bottom: 16),
                       child: InkWell(
                         borderRadius: BorderRadius.circular(12),
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.of(context).pushNamed(Routes.news);
+                        },
                         child: Container(
                           decoration: BoxDecoration(
                             color: Colors.white,

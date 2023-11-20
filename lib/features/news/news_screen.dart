@@ -44,9 +44,15 @@ class NewsScreen extends StatelessWidget {
               const Gap(16),
             ],
           ),
-          const Expanded(
+          Expanded(
             child: Column(
-              children: [],
+              children: [
+                Image.asset(
+                  'assets/images/background.jpg',
+                  height: 400,
+                  fit: BoxFit.cover,
+                ),
+              ],
             ),
           ),
         ],
