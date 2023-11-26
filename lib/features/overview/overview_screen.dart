@@ -1,4 +1,3 @@
-import 'package:circular_charts/circular_charts.dart';
 import 'package:dropdown_button2/dropdown_button2.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
@@ -135,189 +134,89 @@ class _OverviewScreenState extends State<OverviewScreen> {
                   ),
                 ),
                 Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 0),
+                  padding: const EdgeInsets.only(bottom: 16),
                   child: Wrap(
                     spacing: 16,
                     runSpacing: 16,
                     alignment: WrapAlignment.center,
                     children: [
-                      Container(
-                        width: 110,
-                        height: 110,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: Constants.shadow,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: const Center(
-                          child: Text('انبار شماره یک'),
-                        ),
-                      ),
-                      Container(
-                        width: 110,
-                        height: 110,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: Constants.shadow,
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        child: const Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(
-                              Icons.warehouse,
-                              color: Colors.blue,
-                              size: 18,
-                            ),
-                            Gap(8),
-                            Text('انبار شماره دو'),
-                          ],
+                      InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {},
+                        child: Container(
+                          width: 110,
+                          height: 110,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: Constants.shadow,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.warehouse,
+                                color: Colors.grey,
+                                size: 34,
+                              ),
+                              Gap(8),
+                              Text('انبار شماره یک'),
+                            ],
+                          ),
                         ),
                       ),
-                      Container(
-                        width: 110,
-                        height: 110,
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          boxShadow: Constants.shadow,
-                          borderRadius: BorderRadius.circular(16),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {},
+                        child: Container(
+                          width: 110,
+                          height: 110,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: Constants.shadow,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.warehouse,
+                                color: Colors.grey,
+                                size: 34,
+                              ),
+                              Gap(8),
+                              Text('انبار شماره دو'),
+                            ],
+                          ),
                         ),
-                        child: const Center(
-                          child: Text('انبار شماره سه'),
+                      ),
+                      InkWell(
+                        borderRadius: BorderRadius.circular(16),
+                        onTap: () {},
+                        child: Container(
+                          width: 110,
+                          height: 110,
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            boxShadow: Constants.shadow,
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          child: const Column(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.warehouse,
+                                color: Colors.grey,
+                                size: 34,
+                              ),
+                              Gap(8),
+                              Text('انبار شماره سه'),
+                            ],
+                          ),
                         ),
                       ),
                     ],
                   ),
-                ),
-                Stack(
-                  children: [
-                    CircularChart(
-                      isShowingCentreCircle: false,
-                      centreCircleTitle: 'کالاها',
-                      centreCircleSubtitleTextStyle: const TextStyle(
-                        fontFamily: 'IranSans',
-                        color: Colors.black,
-                      ),
-                      centreCirclePercentageTextStyle: const TextStyle(
-                        fontFamily: 'IranSans',
-                        color: Colors.black,
-                      ),
-                      overAllPercentage: 100,
-                      animationTime: 800,
-                      chartHeight: 300,
-                      chartWidth: size.width,
-                      pieChartChildNames: const [
-                        "ذرت",
-                        "گندم",
-                        "جو",
-                      ],
-                      pieChartEndColors: const [
-                        Color(0xfffc7e00),
-                        Color(0xfffc6076),
-                        Color(0xff007ced),
-                        Color(0xff4e9b01),
-                        Color(0xff009efd),
-                        Color(0xffff4b63),
-                      ],
-                      pieChartStartColors: const [
-                        Color(0xffffd200),
-                        Color(0xffff9231),
-                        Color(0xff00beeb),
-                        Color(0xff92d108),
-                        Color(0xff00dbbe),
-                        Color(0xfff280ff),
-                      ],
-                      pieChartPercentages: const [
-                        60,
-                        20,
-                        20,
-                      ],
-                      isShowingLegend: true,
-                    ),
-                    const Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 10,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'آمار به تفکیک کالا',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
-                ),
-                Stack(
-                  children: [
-                    CircularChart(
-                      isShowingCentreCircle: false,
-                      centreCircleTitle: 'کالاها',
-                      centreCircleSubtitleTextStyle: const TextStyle(
-                        fontFamily: 'IranSans',
-                        color: Colors.black,
-                      ),
-                      centreCirclePercentageTextStyle: const TextStyle(
-                        fontFamily: 'IranSans',
-                        color: Colors.black,
-                      ),
-                      overAllPercentage: 100,
-                      animationTime: 800,
-                      chartHeight: 300,
-                      chartWidth: size.width,
-                      pieChartChildNames: const [
-                        "انزلی",
-                        "امام",
-                        "رجایی",
-                        "بندرعباس",
-                      ],
-                      pieChartEndColors: const [
-                        Color(0xfffc7e00),
-                        Color(0xfffc6076),
-                        Color(0xff007ced),
-                        Color(0xff4e9b01),
-                        Color(0xff009efd),
-                        Color(0xffff4b63),
-                      ],
-                      pieChartStartColors: const [
-                        Color(0xffffd200),
-                        Color(0xffff9231),
-                        Color(0xff00beeb),
-                        Color(0xff92d108),
-                        Color(0xff00dbbe),
-                        Color(0xfff280ff),
-                      ],
-                      pieChartPercentages: const [
-                        30,
-                        20,
-                        20,
-                        30,
-                      ],
-                      isShowingLegend: true,
-                    ),
-                    const Positioned(
-                      left: 0,
-                      right: 0,
-                      bottom: 10,
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Text(
-                            'آمار به تفکیک بنادر',
-                            style: TextStyle(
-                              fontSize: 13,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                  ],
                 ),
                 const Gap(32),
               ],

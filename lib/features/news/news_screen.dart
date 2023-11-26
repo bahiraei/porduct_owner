@@ -55,11 +55,16 @@ class _NewsScreenState extends State<NewsScreen> {
                   fontSize: 16.0,
                 ),
               ),
-              background: Image.asset(
-                'assets/images/background.jpg',
-                fit: BoxFit.cover,
+              background: ClipRRect(
+                borderRadius: const BorderRadius.vertical(
+                  bottom: Radius.circular(36),
+                ),
+                child: Image.asset(
+                  'assets/images/background.jpg',
+                  fit: BoxFit.cover,
+                ),
               ),
-              centerTitle: false,
+              centerTitle: true,
               /*expandedTitleScale: 1.6,*/
               stretchModes: const [
                 StretchMode.zoomBackground,
@@ -69,6 +74,19 @@ class _NewsScreenState extends State<NewsScreen> {
               titlePadding: const EdgeInsets.symmetric(
                 vertical: 16,
                 horizontal: 16,
+              ),
+            ),
+            centerTitle: true,
+            leading: IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.arrow_back,
+                color: Colors.white,
+              ),
+            ),
+            shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(36),
               ),
             ),
           ),
@@ -105,6 +123,50 @@ class _NewsScreenState extends State<NewsScreen> {
                   ListTile(
                     title: Text('Item 1'),
                   ),
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+                  ListTile(
+                    title: Text('Item 1'),
+                  ),
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+                  ListTile(
+                    title: Text('Item 1'),
+                  ),
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+                  ListTile(
+                    title: Text('Item 1'),
+                  ),
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+                  ListTile(
+                    title: Text('Item 1'),
+                  ),
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+                  ListTile(
+                    title: Text('Item 1'),
+                  ),
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+                  ListTile(
+                    title: Text('Item 1'),
+                  ),
+                  ListTile(
+                    title: Text('Item 2'),
+                  ),
+
                   ListTile(
                     title: Text('Item 2'),
                   ),
