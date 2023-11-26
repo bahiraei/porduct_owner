@@ -50,9 +50,9 @@ class _NewsScreenState extends State<NewsScreen> {
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
-                'افتتاح پروژه بزرگ انزلی در شهر بزرگ انزلی واقع در ایران',
+                'افتتاح پروژه بزرگ انزلی',
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 15.0,
                 ),
                 overflow: TextOverflow.ellipsis,
               ),
@@ -140,6 +140,8 @@ class _NewsScreenState extends State<NewsScreen> {
                       ),
                       textAlign: TextAlign.justify,
                     ),
+
+                    Text('1402/04')
 
                     // Add more widgets as needed
                   ],
