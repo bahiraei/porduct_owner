@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 
 import 'core/core.dart';
-import 'features/news/news_screen.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -39,14 +39,19 @@ class MyApp extends StatelessWidget {
       ],
       locale: const Locale('fa', 'IR'),
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
+        /*colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),*/
         primaryColor: Colors.blue,
+        primarySwatch: Colors.blue,
         brightness: Brightness.light,
         useMaterial3: true,
         fontFamily: 'IranSans',
+        appBarTheme: AppBarTheme(
+          backgroundColor: Theme.of(context).primaryColor,
+          elevation: 1.6,
+        ),
       ),
       onGenerateRoute: route.generateRoute,
-      home: const NewsScreen(),
+      home: const SplashScreen(),
     );
   }
 }
