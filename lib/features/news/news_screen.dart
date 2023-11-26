@@ -78,7 +78,9 @@ class _NewsScreenState extends State<NewsScreen> {
             ),
             centerTitle: true,
             leading: IconButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
               icon: const Icon(
                 Icons.arrow_back,
                 color: Colors.white,
