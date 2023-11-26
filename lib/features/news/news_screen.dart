@@ -95,102 +95,52 @@ class _NewsScreenState extends State<NewsScreen> {
           SliverToBoxAdapter(
             child: SingleChildScrollView(
               controller: _scrollController,
-              child: const Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  Padding(
-                    padding: EdgeInsets.all(8.0),
-                    child: Text(
-                      'Section 1',
-                      style: TextStyle(
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold,
+              child: const Padding(
+                padding: EdgeInsets.fromLTRB(24, 48, 24, 54),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Padding(
+                      padding: EdgeInsets.all(8.0),
+                      child: Text(
+                        'Section 1',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
                       ),
                     ),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
+                    Text(
+                      'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.',
+                      style: TextStyle(
+                        fontSize: 15,
+                        height: 1.6,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
 
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
+                    Padding(
+                      padding: EdgeInsets.only(top: 48),
+                      child: Text(
+                        'Section 2',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                          fontWeight: FontWeight.bold,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      'لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ، و با استفاده از طراحان گرافیک است، چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است، و برای شرایط فعلی تکنولوژی مورد نیاز، و کاربردهای متنوع با هدف بهبود ابزارهای کاربردی می باشد، کتابهای زیادی در شصت و سه درصد گذشته حال و آینده، شناخت فراوان جامعه و متخصصان را می طلبد، تا با نرم افزارها شناخت بیشتری را برای طراحان رایانه ای علی الخصوص طراحان خلاقی، و فرهنگ پیشرو در زبان فارسی ایجاد کرد، در این صورت می توان امید داشت که تمام و دشواری موجود در ارائه راهکارها، و شرایط سخت تایپ به پایان رسد و زمان مورد نیاز شامل حروفچینی دستاوردهای اصلی، و جوابگوی سوالات پیوسته اهل دنیای موجود طراحی اساسا مورد استفاده قرار گیرد.',
+                      style: TextStyle(
+                        fontSize: 15,
+                        height: 1.6,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
 
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-                  ListTile(
-                    title: Text('Item 1'),
-                  ),
-                  ListTile(
-                    title: Text('Item 2'),
-                  ),
-
-                  // Add more widgets as needed
-                ],
+                    // Add more widgets as needed
+                  ],
+                ),
               ),
             ),
           ),
