@@ -31,6 +31,7 @@ dependencies:
   persian_datetime_picker: ^2.6.0
   syncfusion_flutter_charts: ^23.1.44
   fl_chart: ^0.64.0
+  text_marquee: ^0.0.2
 
 
 

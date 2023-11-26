@@ -50,10 +50,11 @@ class _NewsScreenState extends State<NewsScreen> {
             floating: true,
             flexibleSpace: FlexibleSpaceBar(
               title: const Text(
-                'افتتاح پروژه بزرگ انزلی',
+                'افتتاح پروژه بزرگ انزلی در شهر بزرگ انزلی واقع در ایران',
                 style: TextStyle(
                   fontSize: 16.0,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
               background: ClipRRect(
                 borderRadius: const BorderRadius.vertical(
