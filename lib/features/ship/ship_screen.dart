@@ -1,4 +1,5 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+import 'package:expansion_tile_card/expansion_tile_card.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/widgets/widgets.dart';
@@ -436,6 +437,113 @@ class _ShipScreenState extends State<ShipScreen> {
                                 fontSize: 13,
                                 fontWeight: FontWeight.w400,
                               ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+                  child: Theme(
+                    data: ThemeData().copyWith(
+                      dividerColor: Colors.transparent,
+                      shadowColor: Colors.black26,
+                    ),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(16),
+                      child: ExpansionTile(
+                        title: const Text('انبار ها'),
+                        collapsedBackgroundColor: const Color(0xff377199),
+                        collapsedTextColor: Colors.white,
+                        collapsedIconColor: Colors.white,
+                        collapsedShape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        backgroundColor: Colors.white,
+                        leading: const Icon(
+                          Icons.inventory,
+                          color: Color(0xff377199),
+                        ),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16),
+                        ),
+                        children: [],
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                  child: ExpansionTileCard(
+                    leading: const CircleAvatar(child: Text('A')),
+                    title: const Text('Tap me!'),
+                    subtitle: const Text('I expand!'),
+                    children: <Widget>[
+                      const Divider(
+                        thickness: 1.0,
+                        height: 1.0,
+                      ),
+                      Align(
+                        alignment: Alignment.centerLeft,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 16.0,
+                            vertical: 8.0,
+                          ),
+                          child: Text(
+                            """Hi there, I'm a drop-in replacement for Flutter's ExpansionTile.
+
+Use me any time you think your app could benefit from being just a bit more Material.
+
+These buttons control the next card down!""",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyMedium!
+                                .copyWith(fontSize: 16),
+                          ),
+                        ),
+                      ),
+                      ButtonBar(
+                        alignment: MainAxisAlignment.spaceAround,
+                        buttonHeight: 52.0,
+                        buttonMinWidth: 90.0,
+                        children: <Widget>[
+                          TextButton(
+                            onPressed: () {},
+                            child: const Column(
+                              children: <Widget>[
+                                Icon(Icons.arrow_downward),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 2.0),
+                                ),
+                                Text('Open'),
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: const Column(
+                              children: <Widget>[
+                                Icon(Icons.arrow_upward),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 2.0),
+                                ),
+                                Text('Close'),
+                              ],
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {},
+                            child: const Column(
+                              children: <Widget>[
+                                Icon(Icons.swap_vert),
+                                Padding(
+                                  padding: EdgeInsets.symmetric(vertical: 2.0),
+                                ),
+                                Text('Toggle'),
+                              ],
                             ),
                           ),
                         ],
