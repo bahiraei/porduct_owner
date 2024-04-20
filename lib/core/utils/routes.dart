@@ -5,6 +5,7 @@ import 'package:porduct_owner/features/auth/verify_screen.dart';
 import 'package:porduct_owner/features/news/news_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
 import 'package:porduct_owner/features/overview/overview_screen.dart';
+import 'package:porduct_owner/features/ship/ship_time_sheet_screen.dart';
 import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 
@@ -25,9 +26,11 @@ class Routes {
   static const String verify = "/verify";
   static const String ships = "/ships";
   static const String ship = "/ship";
+  static const String shipTimeSheet = "/shipTimeSheet";
   static const String notifications = "/notifications";
   static const String overview = "/overview";
   static const String services = "/services";
+
   static const String accountType = "/accountType";
   static const String news = "/news";
 
@@ -50,6 +53,9 @@ class Routes {
 
       case ship:
         return screenRouting(const ShipScreen());
+
+      case shipTimeSheet:
+        return screenRouting(const ShipTimeSheetScreen());
 
       case notifications:
         return screenRouting(const NotificationsScreen());

@@ -444,109 +444,47 @@ class _ShipScreenState extends State<ShipScreen> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
-                  child: Theme(
-                    data: ThemeData().copyWith(
-                      dividerColor: Colors.transparent,
-                      shadowColor: Colors.black26,
-                    ),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(16),
-                      child: ExpansionTile(
-                        title: const Text('انبار ها'),
-                        collapsedBackgroundColor: const Color(0xff377199),
-                        collapsedTextColor: Colors.white,
-                        collapsedIconColor: Colors.white,
-                        collapsedShape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        backgroundColor: Colors.white,
-                        leading: const Icon(
-                          Icons.inventory,
-                          color: Color(0xff377199),
-                        ),
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        children: [],
+                const Padding(
+                  padding: EdgeInsets.fromLTRB(24, 0, 24, 32),
+                  child: ExpansionTileCard(
+                    baseColor: Colors.white,
+                    shadowColor: Colors.black,
+                    expandedColor: Colors.white,
+                    leading: CircleAvatar(
+                      child: Icon(
+                        Icons.inventory,
+                        size: 18,
                       ),
                     ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0),
-                  child: ExpansionTileCard(
-                    leading: const CircleAvatar(child: Text('A')),
-                    title: const Text('Tap me!'),
-                    subtitle: const Text('I expand!'),
+                    title: Text('محوطه ها و انبار ها'),
+                    subtitle: Text(
+                      'انبار ها و محوطه های تخصیص داده شده',
+                      style: TextStyle(
+                        fontSize: 12,
+                        color: Colors.grey,
+                      ),
+                    ),
+                    elevation: 2.0,
+                    initiallyExpanded: true,
                     children: <Widget>[
-                      const Divider(
+                      /*Divider(
                         thickness: 1.0,
                         height: 1.0,
-                      ),
-                      Align(
-                        alignment: Alignment.centerLeft,
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                            horizontal: 16.0,
-                            vertical: 8.0,
-                          ),
-                          child: Text(
-                            """Hi there, I'm a drop-in replacement for Flutter's ExpansionTile.
-
-Use me any time you think your app could benefit from being just a bit more Material.
-
-These buttons control the next card down!""",
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodyMedium!
-                                .copyWith(fontSize: 16),
-                          ),
+                      ),*/
+                      Padding(
+                        padding: EdgeInsets.symmetric(
+                          vertical: 24,
+                          horizontal: 16,
                         ),
-                      ),
-                      ButtonBar(
-                        alignment: MainAxisAlignment.spaceAround,
-                        buttonHeight: 52.0,
-                        buttonMinWidth: 90.0,
-                        children: <Widget>[
-                          TextButton(
-                            onPressed: () {},
-                            child: const Column(
-                              children: <Widget>[
-                                Icon(Icons.arrow_downward),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                                ),
-                                Text('Open'),
+                        child: Column(
+                          children: [
+                            Row(
+                              children: [
+                                Text('انبار شماره یک'),
                               ],
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Column(
-                              children: <Widget>[
-                                Icon(Icons.arrow_upward),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                                ),
-                                Text('Close'),
-                              ],
-                            ),
-                          ),
-                          TextButton(
-                            onPressed: () {},
-                            child: const Column(
-                              children: <Widget>[
-                                Icon(Icons.swap_vert),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 2.0),
-                                ),
-                                Text('Toggle'),
-                              ],
-                            ),
-                          ),
-                        ],
+                            )
+                          ],
+                        ),
                       ),
                     ],
                   ),
@@ -561,6 +499,22 @@ These buttons control the next card down!""",
                     },
                     child: const Text(
                       'سرویس های انجام شده',
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(24, 0, 24, 32),
+                  child: CustomButton(
+                    height: 54,
+                    showShadow: false,
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(Routes.shipTimeSheet);
+                    },
+                    child: const Text(
+                      'تایم شیت',
                       style: TextStyle(
                         color: Colors.white,
                       ),
