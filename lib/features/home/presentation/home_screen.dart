@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
 import 'package:porduct_owner/features/home/presentation/view/home_page.dart';
 import 'package:porduct_owner/features/home/presentation/view/profile_page.dart';
 
@@ -17,8 +15,18 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        centerTitle: true,
+        title: const Text(
+          'رصد عملیات',
+          style: TextStyle(
+            color: Colors.white,
+            fontSize: 18,
+          ),
+        ),
+      ),
       body: _getBody(),
-      bottomNavigationBar: Container(
+      /*bottomNavigationBar: Container(
         decoration: BoxDecoration(
           color: Colors.white,
           boxShadow: [
@@ -32,7 +40,7 @@ class _HomeScreenState extends State<HomeScreen> {
           child: GNav(
             rippleColor: Colors.grey[300]!,
             hoverColor: Colors.grey[100]!,
-            /*gap: 32,*/
+            */ /*gap: 32,*/ /*
             activeColor: Colors.black,
             iconSize: 24,
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -58,7 +66,7 @@ class _HomeScreenState extends State<HomeScreen> {
             },
           ),
         ),
-      ),
+      ),*/
     );
   }
 

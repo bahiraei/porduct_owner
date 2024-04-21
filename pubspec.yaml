@@ -33,6 +33,8 @@ dependencies:
   fl_chart: ^0.67.0
   text_marquee: ^0.0.2
   expansion_tile_card: ^3.0.0
+  toastification: ^1.2.1
+  responsive_grid_list: ^1.4.0
 
 
 
@@ -62,6 +64,7 @@ flutter:
     - assets/images/splash/
     - assets/images/profile/
     - assets/images/home/
+    - assets/images/bill/
 
   fonts:
     - family: IranSans

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:porduct_owner/features/account_type/account_type_screen.dart';
 import 'package:porduct_owner/features/auth/login_screen.dart';
 import 'package:porduct_owner/features/auth/verify_screen.dart';
+import 'package:porduct_owner/features/bills/bills_screen.dart';
+import 'package:porduct_owner/features/home_page/home_page_screen.dart';
 import 'package:porduct_owner/features/news/news_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
 import 'package:porduct_owner/features/overview/overview_screen.dart';
@@ -9,6 +11,7 @@ import 'package:porduct_owner/features/ship/ship_time_sheet_screen.dart';
 import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 
+import '../../features/bill/bill_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/services/services_screen.dart';
 import '../../features/ship/ship_screen.dart';
@@ -22,8 +25,13 @@ class Routes {
 
   static const String splash = "/splash";
   static const String home = "/home";
+
+  static const String home2 = "/home2";
   static const String login = "/login";
   static const String verify = "/verify";
+  static const String bills = "/bills";
+
+  static const String bill = "/bill";
   static const String ships = "/ships";
   static const String ship = "/ship";
   static const String shipTimeSheet = "/shipTimeSheet";
@@ -42,6 +50,9 @@ class Routes {
       case home:
         return screenRouting(const HomeScreen());
 
+      case home2:
+        return screenRouting(HomePageScreen());
+
       case login:
         return screenRouting(const LoginScreen());
 
@@ -53,6 +64,12 @@ class Routes {
 
       case ship:
         return screenRouting(const ShipScreen());
+
+      case bills:
+        return screenRouting(const BillsScreen());
+
+      case bill:
+        return screenRouting(const BillScreen());
 
       case shipTimeSheet:
         return screenRouting(const ShipTimeSheetScreen());

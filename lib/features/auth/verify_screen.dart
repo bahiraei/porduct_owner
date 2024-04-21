@@ -139,14 +139,9 @@ class _VerifyScreenState extends State<VerifyScreen> {
                       showShadow: false,
                       backgroundColor: const Color(0xff406CB1),
                       onPressed: () {
-                        /*Navigator.pushNamed(
-                          context,
-                          Routes.accountType,
-                        );*/
-
                         Navigator.pushNamed(
                           context,
-                          Routes.home,
+                          Routes.home2,
                         );
                       },
                       child: const Text(
