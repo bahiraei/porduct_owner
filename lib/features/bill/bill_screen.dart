@@ -3,6 +3,9 @@ import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/consts/app_colors.dart';
+import 'package:porduct_owner/core/core.dart';
+
+import '../secondary_pdf/secondary_pdf_screen.dart';
 
 class BillScreen extends StatelessWidget {
   const BillScreen({super.key});
@@ -74,9 +77,18 @@ class BillScreen extends StatelessWidget {
                             ),
                           ),
                           OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushNamed(
+                                Routes.secondaryPDF,
+                                arguments: SecondaryPdfScreenParams(
+                                  name: "factor-2.pdf",
+                                  pageTitle: "صورت حساب",
+                                  data: Uint8List(0),
+                                ),
+                              );
+                            },
                             child: const Text(
-                              'دانلود فاکتور',
+                              'مشاهده فاکتور',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -109,14 +121,12 @@ class BillScreen extends StatelessWidget {
                               color: Colors.blue.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: const Flexible(
-                              child: Text(
-                                'سازمان بنادر و دریانوردی',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.blueAccent,
-                                ),
+                            child: const Text(
+                              'سازمان بنادر و دریانوردی',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.blueAccent,
                               ),
                             ),
                           ),
@@ -136,13 +146,11 @@ class BillScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              'فله ترمینال 3 قدیم',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                          Text(
+                            'فله ترمینال 3 قدیم',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -161,13 +169,11 @@ class BillScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              '1403/01/01',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                          Text(
+                            '1403/01/01',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -186,13 +192,11 @@ class BillScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              'ریالی',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                          Text(
+                            'ریالی',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -325,10 +329,8 @@ class BillScreen extends StatelessWidget {
                             const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Flexible(
-                                  child: Text(
-                                    'جهت واریز سهم سازمان بنادر و دریانوردی',
-                                  ),
+                                Text(
+                                  'جهت واریز سهم سازمان بنادر و دریانوردی',
                                 ),
                               ],
                             ),
@@ -344,11 +346,9 @@ class BillScreen extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      const Flexible(
-                                        child: Text(
-                                          'IR254521526352654152845162',
-                                          textDirection: TextDirection.rtl,
-                                        ),
+                                      const Text(
+                                        'IR254521526352654152845162',
+                                        textDirection: TextDirection.rtl,
                                       ),
                                       const Gap(6),
                                       InkWell(
@@ -382,11 +382,9 @@ class BillScreen extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      const Flexible(
-                                        child: Text(
-                                          '10,067,256,446',
-                                          textDirection: TextDirection.rtl,
-                                        ),
+                                      const Text(
+                                        '10,067,256,446',
+                                        textDirection: TextDirection.rtl,
                                       ),
                                       const Gap(8),
                                       InkWell(
@@ -421,7 +419,16 @@ class BillScreen extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  Navigator.of(context).pushNamed(
+                                    Routes.secondaryPDF,
+                                    arguments: SecondaryPdfScreenParams(
+                                      name: "factor-1.pdf",
+                                      pageTitle: "صورت حساب",
+                                      data: Uint8List(0),
+                                    ),
+                                  );
+                                },
                                 child: const Text(
                                   'پرداخت آنلاین',
                                   style: TextStyle(
@@ -466,9 +473,18 @@ class BillScreen extends StatelessWidget {
                             ),
                           ),
                           OutlinedButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              Navigator.of(context).pushNamed(
+                                Routes.secondaryPDF,
+                                arguments: SecondaryPdfScreenParams(
+                                  name: "factor-2.pdf",
+                                  pageTitle: "صورت حساب",
+                                  data: Uint8List(0),
+                                ),
+                              );
+                            },
                             child: const Text(
-                              'دانلود فاکتور',
+                              'مشاهده فاکتور',
                               style: TextStyle(
                                 fontSize: 14,
                                 fontWeight: FontWeight.w500,
@@ -501,14 +517,12 @@ class BillScreen extends StatelessWidget {
                               color: Colors.blue.withOpacity(0.2),
                               borderRadius: BorderRadius.circular(16),
                             ),
-                            child: const Flexible(
-                              child: Text(
-                                'آریا بنادر ایرانیان',
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.w400,
-                                  color: Colors.blueAccent,
-                                ),
+                            child: const Text(
+                              'آریا بنادر ایرانیان',
+                              style: TextStyle(
+                                fontSize: 14,
+                                fontWeight: FontWeight.w400,
+                                color: Colors.blueAccent,
                               ),
                             ),
                           ),
@@ -528,13 +542,11 @@ class BillScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              'فله ترمینال 3 قدیم',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                          Text(
+                            'فله ترمینال 3 قدیم',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -553,13 +565,11 @@ class BillScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              '1403/01/01',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                          Text(
+                            '1403/01/01',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -578,13 +588,11 @@ class BillScreen extends StatelessWidget {
                               fontWeight: FontWeight.w400,
                             ),
                           ),
-                          Flexible(
-                            child: Text(
-                              'ریالی',
-                              style: TextStyle(
-                                fontSize: 14,
-                                fontWeight: FontWeight.w400,
-                              ),
+                          Text(
+                            'ریالی',
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w400,
                             ),
                           ),
                         ],
@@ -717,10 +725,8 @@ class BillScreen extends StatelessWidget {
                             const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Flexible(
-                                  child: Text(
-                                    'جهت واریز سهم شرکت آریا بنادر ایرانیان',
-                                  ),
+                                Text(
+                                  'جهت واریز سهم شرکت آریا بنادر ایرانیان',
                                 ),
                               ],
                             ),
@@ -736,11 +742,9 @@ class BillScreen extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      const Flexible(
-                                        child: Text(
-                                          'IR254521526352654152845162',
-                                          textDirection: TextDirection.rtl,
-                                        ),
+                                      const Text(
+                                        'IR254521526352654152845162',
+                                        textDirection: TextDirection.rtl,
                                       ),
                                       const Gap(6),
                                       InkWell(
@@ -774,11 +778,9 @@ class BillScreen extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      const Flexible(
-                                        child: Text(
-                                          '10,067,256,446',
-                                          textDirection: TextDirection.rtl,
-                                        ),
+                                      const Text(
+                                        '10,067,256,446',
+                                        textDirection: TextDirection.rtl,
                                       ),
                                       const Gap(8),
                                       InkWell(

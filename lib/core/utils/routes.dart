@@ -13,6 +13,8 @@ import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 
 import '../../features/bill/bill_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
+import '../../features/pdf/pdf_screen.dart';
+import '../../features/secondary_pdf/secondary_pdf_screen.dart';
 import '../../features/services/services_screen.dart';
 import '../../features/ship/ship_screen.dart';
 
@@ -41,6 +43,9 @@ class Routes {
 
   static const String accountType = "/accountType";
   static const String news = "/news";
+
+  static const String pdf = "/pdf";
+  static const String secondaryPDF = "/secondaryPDF";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -85,6 +90,20 @@ class Routes {
 
       case accountType:
         return screenRouting(const AccountTypeScreen());
+
+      case pdf:
+        return screenRouting(
+          PdfScreen(
+            params: settings.arguments as PdfScreenParams,
+          ),
+        );
+
+      case secondaryPDF:
+        return screenRouting(
+          SecondaryPdfScreen(
+            params: settings.arguments as SecondaryPdfScreenParams,
+          ),
+        );
 
       case news:
         return screenRouting(

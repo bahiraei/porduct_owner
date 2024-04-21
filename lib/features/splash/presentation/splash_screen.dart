@@ -102,7 +102,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'اپلیکیشن صاحبان کالا',
+                      'خدمات ذینفعان',
                       style: TextStyle(
                         fontSize: 18,
                         color: Colors.white,
@@ -115,7 +115,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text(
-                      'Future Per Network',
+                      'Future Per Networks',
                       style: TextStyle(
                         fontSize: 16,
                         color: Colors.white,
@@ -123,6 +123,19 @@ class _SplashScreenState extends State<SplashScreen> {
                     ),
                   ],
                 ).animate().slideY(delay: 2200.ms).fadeIn(),
+                const Gap(8),
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(
+                      'FPN Beneficial',
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ],
+                ).animate().slideY(delay: 2700.ms).fadeIn(),
               ],
             ),
           ),
