@@ -1,7 +1,6 @@
 // ignore: unnecessary_import
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
 import 'package:porduct_owner/features/home_page/widget/tab_bar.dart';
 import '../../../core/widgets/custom_logo.dart';
 

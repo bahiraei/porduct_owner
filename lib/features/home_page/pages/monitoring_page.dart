@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
-import '../widget/home_items.dart';
-
 class MonitoringPage extends StatefulWidget {
   const MonitoringPage({
     super.key,

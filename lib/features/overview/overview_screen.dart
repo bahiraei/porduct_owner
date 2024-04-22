@@ -15,7 +15,6 @@ class _OverviewScreenState extends State<OverviewScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
     final theme = Theme.of(context);
     return Scaffold(
       backgroundColor: Colors.white,

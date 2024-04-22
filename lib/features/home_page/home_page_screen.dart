@@ -1,9 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:google_nav_bar/google_nav_bar.dart';
-import 'package:line_icons/line_icons.dart';
-import 'package:porduct_owner/features/home/presentation/view/home_page.dart';
-import 'package:porduct_owner/features/home/presentation/view/profile_page.dart';
 import 'package:porduct_owner/features/home_page/pages/monitoring_page.dart';
 import 'package:porduct_owner/features/home_page/pages/port_page.dart';
 import 'package:porduct_owner/features/home_page/pages/sea_page.dart';
@@ -12,7 +8,7 @@ import 'widget/app_bar.dart';
 import 'widget/bottom_bar.dart';
 
 class HomePageScreen extends StatefulWidget {
-  HomePageScreen({super.key});
+  const HomePageScreen({super.key});
 
   @override
   State<HomePageScreen> createState() => _HomePageScreenState();

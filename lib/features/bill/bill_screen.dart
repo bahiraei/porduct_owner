@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:gap/gap.dart';
-import 'package:porduct_owner/core/consts/app_colors.dart';
 import 'package:porduct_owner/core/core.dart';
+import 'package:porduct_owner/core/widgets/currency_widget.dart';
 
 import '../secondary_pdf/secondary_pdf_screen.dart';
 
@@ -778,10 +777,26 @@ class BillScreen extends StatelessWidget {
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.end,
                                     children: [
-                                      const Text(
+                                      const CurrencyWidget(
+                                        amount: "10067256446",
+                                        integerStyle: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                        ),
+                                        decimalStyle: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                        ),
+                                        currencyStyle: TextStyle(
+                                          fontSize: 16,
+                                          color: Colors.black,
+                                        ),
+                                        currencySymbol: 'ریال',
+                                      ),
+                                      /* const Text(
                                         '10,067,256,446',
                                         textDirection: TextDirection.rtl,
-                                      ),
+                                      ),*/
                                       const Gap(8),
                                       InkWell(
                                         onTap: () async {

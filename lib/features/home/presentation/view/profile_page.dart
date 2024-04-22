@@ -13,8 +13,6 @@ class ProfilePageView extends StatefulWidget {
 class _ProfilePageViewState extends State<ProfilePageView> {
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     return Scaffold(
       backgroundColor: const Color(0xffe3e3e3),
       body: Column(

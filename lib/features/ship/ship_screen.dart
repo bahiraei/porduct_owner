@@ -19,8 +19,6 @@ class _ShipScreenState extends State<ShipScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
-
     List<_PieData> pieData = [];
 
     List<_PieData> pieDataTonnage = [];

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/core.dart';
 
-import '../../core/consts/app_colors.dart';
-
 class BillsScreen extends StatelessWidget {
   const BillsScreen({super.key});
 
