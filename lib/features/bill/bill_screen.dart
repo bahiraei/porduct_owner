@@ -418,16 +418,7 @@ class BillScreen extends StatelessWidget {
                                 style: ElevatedButton.styleFrom(
                                   backgroundColor: Colors.green,
                                 ),
-                                onPressed: () {
-                                  Navigator.of(context).pushNamed(
-                                    Routes.secondaryPDF,
-                                    arguments: SecondaryPdfScreenParams(
-                                      name: "factor-1.pdf",
-                                      pageTitle: "صورت حساب",
-                                      data: Uint8List(0),
-                                    ),
-                                  );
-                                },
+                                onPressed: () {},
                                 child: const Text(
                                   'پرداخت آنلاین',
                                   style: TextStyle(
