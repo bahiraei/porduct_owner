@@ -10,6 +10,7 @@ import 'package:porduct_owner/features/overview/overview_screen.dart';
 import 'package:porduct_owner/features/ship/ship_time_sheet_screen.dart';
 import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
+import 'package:porduct_owner/features/vessels/vessels_screen.dart';
 
 import '../../features/bill/bill_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
@@ -46,6 +47,7 @@ class Routes {
 
   static const String pdf = "/pdf";
   static const String secondaryPDF = "/secondaryPDF";
+  static const String vessels = "/vessels";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -108,6 +110,11 @@ class Routes {
       case news:
         return screenRouting(
           const NewsScreen(),
+        );
+
+      case vessels:
+        return screenRouting(
+          const VesselsScreen(),
         );
 
       default:
