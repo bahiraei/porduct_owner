@@ -44,6 +44,15 @@ class _MonitoringPageState extends State<PortPage> {
             color: Colors.white,
           ),
         ),
+        HomeItems(
+          routeName: Routes.services,
+          color: Colors.deepPurpleAccent,
+          text: "درخواست خدمات",
+          child: Icon(
+            Icons.home_repair_service,
+            color: Colors.white,
+          ),
+        ),
       ],
     );
   }
