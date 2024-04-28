@@ -38,7 +38,7 @@ class _MonitoringPageState extends State<PortPage> {
         HomeItems(
           routeName: Routes.bills,
           color: Colors.orange,
-          text: "صورت حساب ها",
+          text: "پیش فاکتور ها",
           child: Icon(
             Icons.receipt_rounded,
             color: Colors.white,

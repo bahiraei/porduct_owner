@@ -8,12 +8,14 @@ import 'package:porduct_owner/features/news/news_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
 import 'package:porduct_owner/features/overview/overview_screen.dart';
 import 'package:porduct_owner/features/services/add_unload_request_screen.dart';
+import 'package:porduct_owner/features/services/unload_service_details_screen.dart';
 import 'package:porduct_owner/features/services/unload_services_screen.dart';
 import 'package:porduct_owner/features/ship/ship_time_sheet_screen.dart';
 import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 import 'package:porduct_owner/features/vessels/vessels_screen.dart';
 
+import '../../features/bill/bill_details_screen.dart';
 import '../../features/bill/bill_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/pdf/pdf_screen.dart';
@@ -35,6 +37,7 @@ class Routes {
   static const String login = "/login";
   static const String verify = "/verify";
   static const String bills = "/bills";
+  static const String billDetails = "/billDetail";
 
   static const String bill = "/bill";
   static const String ships = "/ships";
@@ -55,6 +58,8 @@ class Routes {
   static const String unloadServices = "/unloadServices";
 
   static const String addUnloadRequest = "/addUnloadRequest";
+
+  static const String unloadServiceDetails = "/UnloadServiceDetailsScreen";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -81,6 +86,13 @@ class Routes {
 
       case bills:
         return screenRouting(const BillsScreen());
+
+      case billDetails:
+        return screenRouting(
+          BillDetailsScreen(
+            id: settings.arguments as int,
+          ),
+        );
 
       case bill:
         return screenRouting(const BillScreen());
@@ -137,6 +149,11 @@ class Routes {
       case addUnloadRequest:
         return screenRouting(
           const AddUnloadRequestScreen(),
+        );
+
+      case unloadServiceDetails:
+        return screenRouting(
+          const UnloadServiceDetailsScreen(),
         );
 
       default:

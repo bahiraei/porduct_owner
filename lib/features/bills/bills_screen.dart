@@ -30,7 +30,7 @@ class BillsScreen extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'صورتحساب ها',
+                            'پیش فاکتور ها',
                             style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
