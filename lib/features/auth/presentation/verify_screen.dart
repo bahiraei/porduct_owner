@@ -3,8 +3,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:gap/gap.dart';
 import 'package:pinput/pinput.dart';
 
-import '../../core/utils/routes.dart';
-import '../../core/widgets/custom_button.dart';
+import '../../../core/utils/routes.dart';
+import '../../../core/widgets/custom_button.dart';
 
 class VerifyScreen extends StatefulWidget {
   const VerifyScreen({super.key});

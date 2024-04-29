@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:porduct_owner/features/account_type/account_type_screen.dart';
-import 'package:porduct_owner/features/auth/login_screen.dart';
-import 'package:porduct_owner/features/auth/verify_screen.dart';
+
+import 'package:porduct_owner/features/auth/presentation/verify_screen.dart';
 import 'package:porduct_owner/features/bills/bills_screen.dart';
 import 'package:porduct_owner/features/home_page/home_page_screen.dart';
 import 'package:porduct_owner/features/news/news_screen.dart';
@@ -15,6 +15,8 @@ import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
 import 'package:porduct_owner/features/vessels/vessels_screen.dart';
 
+import '../../features/auth/presentation/auth_with_pass.dart';
+import '../../features/auth/presentation/login_screen.dart';
 import '../../features/bill/bill_details_screen.dart';
 import '../../features/bill/bill_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
@@ -36,6 +38,9 @@ class Routes {
   static const String home2 = "/home2";
   static const String login = "/login";
   static const String verify = "/verify";
+
+  static const String loginWithSms = "/loginWithSms";
+
   static const String bills = "/bills";
   static const String billDetails = "/billDetail";
 
@@ -77,6 +82,9 @@ class Routes {
 
       case verify:
         return screenRouting(const VerifyScreen());
+
+      case loginWithSms:
+        return screenRouting(const AuthWithPassScreen());
 
       case ships:
         return screenRouting(const ShipsScreen());

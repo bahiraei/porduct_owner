@@ -45,11 +45,11 @@ class ExceptionHandler {
         );
       } else if (error.type == DioExceptionType.receiveTimeout) {
         return FetchDataException(
-          message: error.response?.data['message'] ?? error.message,
+          message: error.response?.data['Message'] ?? error.message,
         );
       } else if (error.type == DioExceptionType.sendTimeout) {
         return FetchDataException(
-          message: error.response?.data['message'] ?? error.message,
+          message: error.response?.data['Message'] ?? error.message,
         );
       } else if (error.type == DioExceptionType.connectionError) {
         return SocketException(
@@ -60,45 +60,47 @@ class ExceptionHandler {
           switch (error.response?.statusCode) {
             case 400: // Bad Request
               return BadRequestException(
-                  message: error.response?.data['message'] ?? error.message);
+                  message: error.response?.data['Message'] ?? error.message);
             case 401: //Unauthorized
               return UnauthorizedException(
-                message: error.response?.data['message'] ?? error.message,
+                message: error.response?.data['Message'] ?? error.message,
               );
             case 403: //Forbidden
               return UnauthorizedException(
-                message: error.response?.data['message'] ?? error.message,
+                message: error.response?.data['Message'] ?? error.message,
               );
             case 404: // Not Found
               return NotFoundException(message: 'اتصال به سرور ممکن نیست');
             case 500: // Internal Server Error
+              return BadRequestException(
+                  message: error.response?.data['Message'] ?? error.message);
             default:
               return FetchDataException(message: 'خطا در ارتباط با سرور');
           }
         }
         return FetchDataException(
-          message: error.response?.data['message'] ?? error.message,
+          message: error.response?.data['Message'] ?? error.message,
         );
       } else if (error.type == DioExceptionType.unknown) {
         if (error.response != null) {
           switch (error.response?.statusCode) {
             case 400: // Bad Request
               return BadRequestException(
-                  message: error.response?.data['message'] ?? error.message);
+                  message: error.response?.data['Message'] ?? error.message);
             case 401: //Unauthorized
               return UnauthorizedException(
-                message: error.response?.data['message'] ?? error.message,
+                message: error.response?.data['Message'] ?? error.message,
               );
             case 403: //Forbidden
               return UnauthorizedException(
-                message: error.response?.data['message'] ?? error.message,
+                message: error.response?.data['Message'] ?? error.message,
               );
             case 404: // Not Found
               return NotFoundException(message: 'اتصال به سرور ممکن نیست');
             case 500: // Internal Server Error
             default:
               return FetchDataException(
-                  message: error.response?.data['message'] ?? error.message);
+                  message: error.response?.data['Message'] ?? error.message);
           }
         } else {
           return SocketException(
@@ -107,18 +109,18 @@ class ExceptionHandler {
         }
       } else if (error.type == DioExceptionType.cancel) {
         return FetchDataException(
-          message: error.response?.data['message'] ?? error.message,
+          message: error.response?.data['Message'] ?? error.message,
         );
       } else if (error.type == DioExceptionType.badResponse) {
         if (error.response!.statusCode == 401) {
           return UnauthorizedException(
-            message: error.response?.data['message'] ?? error.message,
+            message: error.response?.data['Message'] ?? error.message,
           );
         } else if (error.response!.statusCode == 413) {
           return BadRequestException(message: 'حجم فایل ارسالی زیاد میباشد');
         } else {
           return BadRequestException(
-              message: error.response?.data['message'] ?? error.message);
+              message: error.response?.data['Message'] ?? error.message);
         }
       }
     } else if (error is AppException) {

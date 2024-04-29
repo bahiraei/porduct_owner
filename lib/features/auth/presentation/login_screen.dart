@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 
-import '../../core/utils/routes.dart';
-import '../../core/widgets/widgets.dart';
+import '../../../core/utils/routes.dart';
+import '../../../core/widgets/custom_button.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
