@@ -151,12 +151,16 @@ class Routes {
 
       case unloadServices:
         return screenRouting(
-          const UnloadServicesScreen(),
+          UnloadServicesScreen(
+            screenParam: settings.arguments as UnloadServicesScreenParam,
+          ),
         );
 
       case addUnloadRequest:
         return screenRouting(
-          const AddUnloadRequestScreen(),
+          AddUnloadRequestScreen(
+            screenParam: settings.arguments as AddUnloadRequestScreenParam,
+          ),
         );
 
       case unloadServiceDetails:

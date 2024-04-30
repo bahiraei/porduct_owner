@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/consts/app_colors.dart';
+import 'package:porduct_owner/core/model/product_category.dart';
 
+import '../../core/model/allocationOfEquTypes.dart';
+import '../../core/model/port.dart';
+import '../../core/model/ship.dart';
 import '../../core/utils/routes.dart';
+import 'add_unload_request_screen.dart';
 
 class UnloadServicesScreen extends StatelessWidget {
-  const UnloadServicesScreen({super.key});
+  final UnloadServicesScreenParam screenParam;
+
+  const UnloadServicesScreen({
+    super.key,
+    required this.screenParam,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -139,9 +149,31 @@ class UnloadServicesScreen extends StatelessWidget {
         onPressed: () {
           Navigator.of(context).pushNamed(
             Routes.addUnloadRequest,
+            arguments: AddUnloadRequestScreenParam(
+              port: screenParam.port,
+              ship: screenParam.ship,
+              allocationEquTypes: screenParam.allocationEquTypes,
+              productCategories: screenParam.productCategories,
+            ),
           );
         },
       ),
     );
   }
+}
+
+class UnloadServicesScreenParam {
+  final ShipModel ship;
+  final PortModel port;
+
+  final List<AllocationOfEquTypesModel> allocationEquTypes;
+
+  final List<ProductCategoryModel> productCategories;
+
+  UnloadServicesScreenParam({
+    required this.ship,
+    required this.port,
+    required this.allocationEquTypes,
+    required this.productCategories,
+  });
 }

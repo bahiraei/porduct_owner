@@ -72,11 +72,11 @@ class ProductOwnerDataSource
         'AllocationOfEquTypeIds': allocationOfEquTypeIds,
       },
     );
-    if (manifestFile != null && manifestFile.bytes != null) {
+    if (manifestFile != null) {
       formData = FormData.fromMap(
         {
           'manifestFile': MultipartFile.fromBytes(
-            manifestFile!.bytes!,
+            await manifestFile.xFile.readAsBytes(),
             filename: manifestFile.name,
           ),
           'shipId': shipId,
@@ -92,7 +92,7 @@ class ProductOwnerDataSource
     }
 
     final Response response = await client.post(
-      '/api/Account/ChangeProfileImage',
+      '/api/OwnerProduct/CreateAllocationEqu',
       data: formData,
     );
 
@@ -106,6 +106,10 @@ class ProductOwnerDataSource
   }) async {
     final response = await client.post(
       '/api/Ship/GetShips',
+      data: {
+        "shipType": shipType,
+        "search": search,
+      },
     );
 
     final validated = validateResponse(response);
