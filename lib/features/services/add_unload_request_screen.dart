@@ -257,8 +257,6 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                               margin: const EdgeInsets.only(right: 16),
                               child: TextFormField(
                                 controller: pmoNumberController,
-                                textDirection: TextDirection.ltr,
-                                textAlign: TextAlign.left,
                                 cursorColor: Colors.black54,
                                 keyboardType: TextInputType.number,
                                 decoration: InputDecoration(
@@ -268,7 +266,7 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                   border: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(12),
                                   ),
-                                  hintText: 'PMO Number',
+                                  hintText: 'شماره سفر',
                                   contentPadding: const EdgeInsets.symmetric(
                                     horizontal: 16,
                                   ),
@@ -369,6 +367,9 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                               ),
                               margin: const EdgeInsets.only(right: 16),
                               child: TextFormField(
+                                inputFormatters: [
+                                  ThousandsFormatter(),
+                                ],
                                 controller: tonnageController,
                                 textDirection: TextDirection.ltr,
                                 cursorColor: Colors.black54,
@@ -596,8 +597,10 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                         i.isNotEmpty) {
                                       BlocProvider.of<ServiceBloc>(context).add(
                                         ServiceAddUnloadRequestStarted(
-                                          tonnage:
-                                              int.parse(tonnageController.text),
+                                          tonnage: int.parse(
+                                            tonnageController.text
+                                                .replaceAll(',', ''),
+                                          ),
                                           productCategoryId:
                                               selectedProductCategory!.id,
                                           pmoNumber: pmoNumberController.text,
@@ -608,7 +611,9 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                           portId: widget.screenParam.port.id,
                                           allocationOfEquTypeIds: i,
                                           shipId: widget.screenParam.ship.id,
-                                          manifestFile: files.first,
+                                          manifestFile: files.isNotEmpty
+                                              ? files.first
+                                              : null,
                                         ),
                                       );
                                     }
