@@ -23,7 +23,7 @@ class IIMassRemoteDataSource
     required String password,
   }) async {
     final response = await http.post(
-      'Map/GetVesselInfo',
+      '/api/Map/GetVesselInfo',
       data: {
         'password': password,
       },

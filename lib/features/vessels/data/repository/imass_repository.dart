@@ -27,5 +27,5 @@ class IMassRepository implements IIMassRepository {
 
 final iMassRepository = IMassRepository(
     dataSource: IIMassRemoteDataSource(
-  http: loadUnloadClientMain,
+  http: loadUnloadClient,
 ));
