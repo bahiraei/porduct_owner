@@ -19,7 +19,6 @@ import '../../features/auth/presentation/auth_with_pass.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/bill/bill_details_screen.dart';
 import '../../features/bill/bill_screen.dart';
-import '../../features/document_managment/presentation/document_managment_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/pdf/pdf_screen.dart';
 import '../../features/secondary_pdf/secondary_pdf_screen.dart';
@@ -166,11 +165,6 @@ class Routes {
       case unloadServiceDetails:
         return screenRouting(
           const UnloadServiceDetailsScreen(),
-        );
-
-      case documentManagement:
-        return screenRouting(
-          const DocumentManagementScreen(),
         );
 
       default:
