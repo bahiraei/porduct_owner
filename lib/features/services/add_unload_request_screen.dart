@@ -417,7 +417,7 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                 mainAxisAlignment: MainAxisAlignment.center,
                                 children: [
                                   const Text(
-                                    'آپلود فایل ضمیمه',
+                                    'آپلود مانیفست کشتی',
                                     style: TextStyle(
                                       fontSize: 16,
                                       fontWeight: FontWeight.w500,
@@ -536,7 +536,7 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                               const SizedBox(width: 12),
                               InkWell(
                                 onTap: () {
-                                  files.removeAt(0);
+                                  files.clear();
                                   setState(() {});
                                 },
                                 child: const Icon(
