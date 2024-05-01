@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:porduct_owner/features/account_type/account_type_screen.dart';
 
 import 'package:porduct_owner/features/auth/presentation/verify_screen.dart';
-import 'package:porduct_owner/features/bills/bills_screen.dart';
+
 import 'package:porduct_owner/features/home_page/home_page_screen.dart';
 import 'package:porduct_owner/features/news/news_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
@@ -19,6 +19,7 @@ import '../../features/auth/presentation/auth_with_pass.dart';
 import '../../features/auth/presentation/login_screen.dart';
 import '../../features/bill/bill_details_screen.dart';
 import '../../features/bill/bill_screen.dart';
+import '../../features/document_managment/presentation/document_managment_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/pdf/pdf_screen.dart';
 import '../../features/secondary_pdf/secondary_pdf_screen.dart';
@@ -41,7 +42,6 @@ class Routes {
 
   static const String loginWithSms = "/loginWithSms";
 
-  static const String bills = "/bills";
   static const String billDetails = "/billDetail";
 
   static const String bill = "/bill";
@@ -65,6 +65,9 @@ class Routes {
   static const String addUnloadRequest = "/addUnloadRequest";
 
   static const String unloadServiceDetails = "/UnloadServiceDetailsScreen";
+
+  static const String documentManagement = "documentManagement";
+  static const String addNewDocument = "addNewDocument";
 
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -91,9 +94,6 @@ class Routes {
 
       case ship:
         return screenRouting(const ShipScreen());
-
-      case bills:
-        return screenRouting(const BillsScreen());
 
       case billDetails:
         return screenRouting(
@@ -166,6 +166,11 @@ class Routes {
       case unloadServiceDetails:
         return screenRouting(
           const UnloadServiceDetailsScreen(),
+        );
+
+      case documentManagement:
+        return screenRouting(
+          const DocumentManagementScreen(),
         );
 
       default:

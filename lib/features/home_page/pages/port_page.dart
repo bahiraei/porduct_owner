@@ -36,20 +36,20 @@ class _MonitoringPageState extends State<PortPage> {
           ),
         ),
         HomeItems(
-          routeName: Routes.bills,
-          color: Colors.orange,
-          text: "پیش فاکتور ها",
-          child: Icon(
-            Icons.receipt_rounded,
-            color: Colors.white,
-          ),
-        ),
-        HomeItems(
           routeName: Routes.services,
           color: Colors.deepPurpleAccent,
           text: "درخواست خدمات",
           child: Icon(
             Icons.home_repair_service,
+            color: Colors.white,
+          ),
+        ),
+        HomeItems(
+          color: Colors.deepPurpleAccent,
+          text: "مدیریت اسناد",
+          routeName: Routes.documentManagement,
+          child: Icon(
+            Icons.document_scanner_outlined,
             color: Colors.white,
           ),
         ),
