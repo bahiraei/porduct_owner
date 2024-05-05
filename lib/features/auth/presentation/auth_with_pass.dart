@@ -96,6 +96,7 @@ class _AuthWithPassScreenState extends State<AuthWithPassScreen> {
                     children: [
                       TextFormField(
                         controller: usernameController,
+                        keyboardType: TextInputType.number,
                         decoration: InputDecoration(
                           errorStyle: const TextStyle(
                             fontSize: 12,

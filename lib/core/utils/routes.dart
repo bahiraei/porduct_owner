@@ -65,9 +65,6 @@ class Routes {
 
   static const String unloadServiceDetails = "/UnloadServiceDetailsScreen";
 
-  static const String documentManagement = "documentManagement";
-  static const String addNewDocument = "addNewDocument";
-
   Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
       case splash:

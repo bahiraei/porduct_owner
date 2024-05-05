@@ -44,15 +44,6 @@ class _MonitoringPageState extends State<PortPage> {
             color: Colors.white,
           ),
         ),
-        HomeItems(
-          color: Colors.deepPurpleAccent,
-          text: "مدیریت اسناد",
-          routeName: Routes.documentManagement,
-          child: Icon(
-            Icons.document_scanner_outlined,
-            color: Colors.white,
-          ),
-        ),
       ],
     );
   }
