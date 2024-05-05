@@ -66,7 +66,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Text(
-                            'درخواست خدمات',
+                            'خدمات',
                             style: TextStyle(
                               fontSize: 17,
                               fontWeight: FontWeight.bold,
@@ -311,7 +311,7 @@ class _ServicesScreenState extends State<ServicesScreen> {
                                       Gap(12),
                                       Flexible(
                                         child: Text(
-                                          'کاربر گرامی: ابتدا بندر و کشتی مورد نظر خود را انتخاب نمایید',
+                                          'ابتدا بندر و کشتی مورد نظر خود را انتخاب نمایید',
                                           style: TextStyle(
                                             fontSize: 14,
                                           ),

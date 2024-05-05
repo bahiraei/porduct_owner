@@ -38,7 +38,7 @@ class _MonitoringPageState extends State<PortPage> {
         HomeItems(
           routeName: Routes.services,
           color: Colors.deepPurpleAccent,
-          text: "درخواست خدمات",
+          text: "خدمات",
           child: Icon(
             Icons.home_repair_service,
             color: Colors.white,
