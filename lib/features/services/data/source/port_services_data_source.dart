@@ -2,27 +2,21 @@ import 'dart:convert';
 
 import 'package:dio/dio.dart';
 
-import '../../../../core/consts/app_environment.dart';
 import '../../../../core/exception/http_response_validator.dart';
 import '../response/allocation_equs_response.dart';
 
 abstract class IPortServicesDataSource {
   Future<AllocationEquResponse> getAllocationEqu({
-    required String pass,
     required int page,
-    required String? search,
     required String? shipId,
     required String? portId,
-    required String? companyId,
   });
 
   Future<String?> getReportAllocationEquOrgBase64File({
-    required String pass,
     required String allocationEquipmentId,
   });
 
   Future<String?> getReportAllocationEquAriaBase64File({
-    required String pass,
     required String allocationEquipmentId,
   });
 }
@@ -38,22 +32,16 @@ class PortServicesDataSource
 
   @override
   Future<AllocationEquResponse> getAllocationEqu({
-    required String pass,
     required int page,
-    required String? search,
     required String? shipId,
     required String? portId,
-    required String? companyId,
   }) async {
     final response = await http.post(
-      '/api/OrganizationApp/GetAllocationEqu',
+      '/api/OwnerProduct/GetAllocationEqu',
       data: {
         "page": page,
-        "companyId": companyId,
         "portId": portId,
         "shipId": shipId,
-        "search": search,
-        "pass": AppEnvironment.loadUnloadApiPassword,
       },
     );
 
@@ -64,14 +52,12 @@ class PortServicesDataSource
 
   @override
   Future<String?> getReportAllocationEquAriaBase64File({
-    required String pass,
     required String allocationEquipmentId,
   }) async {
     final response = await http.post(
-      '/api/OrganizationApp/GetReportAllocationEquAriaBase64File',
+      '/api/OwnerProduct/GetReportAllocationEquAriaBase64File',
       data: {
         "allocationEquipmentId": allocationEquipmentId,
-        "pass": AppEnvironment.loadUnloadApiPassword,
       },
     );
 
@@ -87,14 +73,12 @@ class PortServicesDataSource
 
   @override
   Future<String?> getReportAllocationEquOrgBase64File({
-    required String pass,
     required String allocationEquipmentId,
   }) async {
     final response = await http.post(
-      '/api/OrganizationApp/GetReportAllocationEquOrgBase64File',
+      '/api/OwnerProduct/GetReportAllocationEquOrgBase64File',
       data: {
         "allocationEquipmentId": allocationEquipmentId,
-        "pass": AppEnvironment.loadUnloadApiPassword,
       },
     );
 
