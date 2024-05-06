@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:porduct_owner/features/account_type/account_type_screen.dart';
-
 import 'package:porduct_owner/features/auth/presentation/verify_screen.dart';
-
 import 'package:porduct_owner/features/home_page/home_page_screen.dart';
 import 'package:porduct_owner/features/news/news_screen.dart';
 import 'package:porduct_owner/features/notifications/notification_screen.dart';
 import 'package:porduct_owner/features/overview/overview_screen.dart';
-import 'package:porduct_owner/features/services/add_unload_request_screen.dart';
-import 'package:porduct_owner/features/services/unload_service_details_screen.dart';
-import 'package:porduct_owner/features/services/unload_services_screen.dart';
+import 'package:porduct_owner/features/services/presentation/unload_services_screen.dart';
 import 'package:porduct_owner/features/ship/ship_time_sheet_screen.dart';
 import 'package:porduct_owner/features/ships/ships_screen.dart';
 import 'package:porduct_owner/features/splash/presentation/splash_screen.dart';
@@ -22,7 +18,10 @@ import '../../features/bill/bill_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/pdf/pdf_screen.dart';
 import '../../features/secondary_pdf/secondary_pdf_screen.dart';
-import '../../features/services/services_screen.dart';
+import '../../features/services/data/model/allocation_equ.dart';
+import '../../features/services/presentation/add_unload_request_screen.dart';
+import '../../features/services/presentation/services_screen.dart';
+import '../../features/services/presentation/unload_service_details_screen.dart';
 import '../../features/ship/ship_screen.dart';
 
 class Routes {
@@ -147,7 +146,7 @@ class Routes {
 
       case unloadServices:
         return screenRouting(
-          UnloadServicesScreen(
+          UnloadServicesPageScreen(
             screenParam: settings.arguments as UnloadServicesScreenParam,
           ),
         );
@@ -161,7 +160,9 @@ class Routes {
 
       case unloadServiceDetails:
         return screenRouting(
-          const UnloadServiceDetailsScreen(),
+          UnloadServiceDetailsScreen(
+            allocationEquModel: settings.arguments as AllocationEquModel,
+          ),
         );
 
       default:

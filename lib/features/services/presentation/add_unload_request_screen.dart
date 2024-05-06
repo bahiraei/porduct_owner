@@ -4,19 +4,21 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-
 import 'package:persian_datetime_picker/persian_datetime_picker.dart';
 import 'package:porduct_owner/core/model/port.dart';
+import 'package:porduct_owner/core/model/product.dart';
 import 'package:porduct_owner/core/model/product_category.dart';
-import 'package:porduct_owner/core/model/ship.dart';
+import 'package:porduct_owner/core/model/ship_type.dart';
 import 'package:porduct_owner/core/repository/product_owner_repository.dart';
-import 'package:porduct_owner/features/services/bloc/service_bloc.dart';
+import 'package:porduct_owner/features/services/presentation/bloc/service_bloc.dart';
+import 'package:porduct_owner/features/services/presentation/services_screen.dart';
 
-import '../../core/consts/app_colors.dart';
-import '../../core/model/allocationOfEquTypes.dart';
-import '../../core/utils/helper.dart';
-import '../../core/widgets/app_button.dart';
-import '../../core/widgets/custom_text_form_field.dart';
+import '../../../core/consts/app_colors.dart';
+import '../../../core/model/allocationOfEquTypes.dart';
+import '../../../core/model/ship.dart';
+import '../../../core/utils/helper.dart';
+import '../../../core/widgets/app_button.dart';
+import '../../../core/widgets/custom_text_form_field.dart';
 
 class AddUnloadRequestScreen extends StatefulWidget {
   final AddUnloadRequestScreenParam screenParam;
@@ -40,6 +42,7 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
   final fromDateController = TextEditingController();
 
   ProductCategoryModel? selectedProductCategory;
+  ProductModel? selectedProduct;
 
   List<PlatformFile> files = [];
 
@@ -48,8 +51,17 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
 
   final descriptionController = TextEditingController();
 
+  PortModel? selectedPort;
+
+  ShipModel? selectedShip;
+
+  TextEditingController shipController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
+    selectedPort = widget.screenParam.ports.isNotEmpty
+        ? widget.screenParam.ports.first
+        : null;
     return BlocProvider<ServiceBloc>(
       create: (context) {
         final bloc = ServiceBloc(
@@ -140,6 +152,143 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                       const Gap(16),
                       Row(
                         children: [
+                          const Expanded(
+                            flex: 2,
+                            child: Text(
+                              'بندر',
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: DropdownButtonFormField2<PortModel>(
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleSmall!
+                                  .copyWith(
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                  ),
+                              isExpanded: true,
+                              decoration: InputDecoration(
+                                // Add Horizontal padding using menuItemStyleData.padding so it matches
+                                // the menu padding when button's width is not specified.
+                                contentPadding:
+                                    const EdgeInsets.fromLTRB(8, 4, 0, 0),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                // Add more decoration..
+                              ),
+                              hint: const Text(
+                                'انتخاب بندر',
+                              ),
+                              items: widget.screenParam.ports
+                                  .map((bandar) => DropdownMenuItem<PortModel>(
+                                        alignment: Alignment.centerRight,
+                                        value: bandar,
+                                        child: Text(
+                                          bandar.portName.toString(),
+                                        ),
+                                      ))
+                                  .toList(),
+                              validator: (value) {
+                                if (value == null) {
+                                  return 'لطفا یک بندر را انتخاب کنید';
+                                }
+                                return null;
+                              },
+                              onChanged: (bandar) {
+                                setState(() {
+                                  selectedPort = bandar!;
+                                });
+                              },
+                              buttonStyleData: const ButtonStyleData(
+                                padding: EdgeInsets.only(right: 8),
+                              ),
+                              value: selectedPort,
+                              iconStyleData: const IconStyleData(
+                                icon: Icon(
+                                  Icons.arrow_drop_down,
+                                  color: Colors.black45,
+                                ),
+                                iconSize: 24,
+                              ),
+                              dropdownStyleData: DropdownStyleData(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(15),
+                                ),
+                                direction: DropdownDirection.textDirection,
+                              ),
+                              menuItemStyleData: const MenuItemStyleData(
+                                padding: EdgeInsets.symmetric(horizontal: 16),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Gap(16),
+                      Row(
+                        children: [
+                          const Expanded(
+                            flex: 2,
+                            child: Text(
+                              'کشتی',
+                            ),
+                          ),
+                          Expanded(
+                            flex: 2,
+                            child: TextFormField(
+                              onTap: () async {
+                                final result = await showDialog(
+                                  context: context,
+                                  builder: (context) {
+                                    return ShipSearchDialog(
+                                      shipTypes: widget.screenParam.shipTypes,
+                                    );
+                                  },
+                                );
+
+                                if (result != null) {
+                                  setState(() {
+                                    selectedShip = (result as ShipModel);
+                                  });
+                                  shipController.text =
+                                      (result as ShipModel).shipName;
+                                }
+                              },
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                alignLabelWithHint: true,
+                                hintStyle: const TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                                hintText: 'انتخاب کشتی',
+                                contentPadding: const EdgeInsets.symmetric(
+                                  horizontal: 16,
+                                  vertical: 0,
+                                ),
+                              ),
+                              style: const TextStyle(
+                                fontSize: 14,
+                              ),
+                              readOnly: true,
+                              controller: shipController,
+                              validator: (value) {
+                                if (value?.isEmpty ?? true) {
+                                  return "کشتی را انتخاب کنید";
+                                }
+                                return null;
+                              },
+                            ),
+                          ),
+                        ],
+                      ),
+                      const Gap(16),
+                      Row(
+                        children: [
                           Expanded(
                             child: Column(
                               mainAxisAlignment: MainAxisAlignment.center,
@@ -149,7 +298,7 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                     const Expanded(
                                       flex: 2,
                                       child: Text(
-                                        'نوع کالا',
+                                        'دسته بندی کالا',
                                       ),
                                     ),
                                     Expanded(
@@ -171,7 +320,7 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                           // Add more decoration..
                                         ),
                                         hint: const Text(
-                                          'انتخاب نوع کالا',
+                                          'انتخاب دسته بندی کالا',
                                           style: TextStyle(fontSize: 14),
                                         ),
                                         items:
@@ -191,13 +340,14 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                                 .toList(),
                                         validator: (value) {
                                           if (value == null) {
-                                            return 'لطفا نوع کالا را انتخاب کنید';
+                                            return 'لطفا دسته بندی کالا را انتخاب کنید';
                                           }
                                           return null;
                                         },
                                         onChanged: (value) {
                                           setState(() {
                                             selectedProductCategory = value;
+                                            selectedProduct = null;
                                           });
                                         },
                                         /*onSaved: (value) {
@@ -237,6 +387,108 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                           ),
                         ],
                       ),
+                      if (selectedProductCategory != null) const Gap(16),
+                      if (selectedProductCategory != null)
+                        Row(
+                          children: [
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Row(
+                                    children: [
+                                      const Expanded(
+                                        flex: 2,
+                                        child: Text(
+                                          'نوع کالا',
+                                        ),
+                                      ),
+                                      Expanded(
+                                        flex: 2,
+                                        child: DropdownButtonFormField2<
+                                            ProductModel>(
+                                          isExpanded: true,
+                                          decoration: InputDecoration(
+                                            // Add Horizontal padding using menuItemStyleData.padding so it matches
+                                            // the menu padding when button's width is not specified.
+                                            contentPadding:
+                                                const EdgeInsets.symmetric(
+                                              vertical: 12,
+                                            ),
+                                            border: OutlineInputBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                            // Add more decoration..
+                                          ),
+                                          hint: const Text(
+                                            'انتخاب نوع کالا',
+                                            style: TextStyle(fontSize: 14),
+                                          ),
+                                          items:
+                                              selectedProductCategory?.products
+                                                  .map(
+                                                    (item) => DropdownMenuItem<
+                                                        ProductModel>(
+                                                      value: item,
+                                                      child: Text(
+                                                        item.productName,
+                                                        style: const TextStyle(
+                                                          fontSize: 14,
+                                                        ),
+                                                      ),
+                                                    ),
+                                                  )
+                                                  .toList(),
+                                          validator: (value) {
+                                            if (value == null) {
+                                              return 'لطفا  نوع کالا را انتخاب کنید';
+                                            }
+                                            return null;
+                                          },
+                                          onChanged: (value) {
+                                            setState(() {
+                                              selectedProduct = value;
+                                            });
+                                          },
+                                          /*onSaved: (value) {
+                                        setState(() {
+                                          selectedProductCategory = value;
+                                        });
+                                      },*/
+                                          buttonStyleData:
+                                              const ButtonStyleData(
+                                            padding: EdgeInsets.only(right: 8),
+                                          ),
+                                          iconStyleData: const IconStyleData(
+                                            icon: Icon(
+                                              Icons.arrow_drop_down,
+                                              color: Colors.black45,
+                                            ),
+                                            iconSize: 24,
+                                          ),
+                                          dropdownStyleData: DropdownStyleData(
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(15),
+                                            ),
+                                          ),
+                                          menuItemStyleData:
+                                              const MenuItemStyleData(
+                                            padding: EdgeInsets.symmetric(
+                                              horizontal: 16,
+                                            ),
+                                          ),
+                                          value: selectedProduct,
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       const Gap(16),
                       Row(
                         children: [
@@ -307,7 +559,7 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                   Jalali? picked = await showPersianDatePicker(
                                     context: context,
                                     initialDate: Jalali.now(),
-                                    firstDate: Jalali(1400, 1),
+                                    firstDate: Jalali.now(),
                                     lastDate: Jalali(1500, 1),
                                   );
                                   if (picked != null) {
@@ -593,24 +845,42 @@ class _AddUnloadRequestScreenState extends State<AddUnloadRequestScreen> {
                                         .where((element) => element.isChecked)
                                         .map((e) => e.id)
                                         .toList();
-                                    if (formKey.currentState!.validate() &&
-                                        i.isNotEmpty) {
+
+                                    if (formKey.currentState!.validate()) {
+                                      if (i.isEmpty) {
+                                        Helper.showToast(
+                                          title: 'خدمات را انتخاب کنید',
+                                          description:
+                                              'نوع خدمات الزامی میباشد',
+                                          context: context,
+                                        );
+                                        return;
+                                      }
+
+                                      if (selectedShip == null) {
+                                        Helper.showToast(
+                                          title: 'کشتی را انتخاب کنید',
+                                          description: 'کشتی الزامی میباشد',
+                                          context: context,
+                                        );
+                                        return;
+                                      }
+
                                       BlocProvider.of<ServiceBloc>(context).add(
                                         ServiceAddUnloadRequestStarted(
                                           tonnage: int.parse(
                                             tonnageController.text
                                                 .replaceAll(',', ''),
                                           ),
-                                          productCategoryId:
-                                              selectedProductCategory!.id,
+                                          productId: selectedProduct!.id,
                                           pmoNumber: pmoNumberController.text,
                                           description:
                                               descriptionController.text,
                                           enterShipFa:
                                               toDate!.formatCompactDate(),
-                                          portId: widget.screenParam.port.id,
+                                          portId: selectedPort!.id,
                                           allocationOfEquTypeIds: i,
-                                          shipId: widget.screenParam.ship.id,
+                                          shipId: selectedShip!.id,
                                           manifestFile: files.isNotEmpty
                                               ? files.first
                                               : null,
@@ -694,16 +964,17 @@ class CustomCheckBoxListItem extends StatelessWidget {
 }
 
 class AddUnloadRequestScreenParam {
-  final ShipModel ship;
-  final PortModel port;
+  final List<ShipTypeModel> shipTypes;
+
+  final List<PortModel> ports;
 
   final List<ProductCategoryModel> productCategories;
 
   final List<AllocationOfEquTypesModel> allocationEquTypes;
 
   AddUnloadRequestScreenParam({
-    required this.ship,
-    required this.port,
+    required this.shipTypes,
+    required this.ports,
     required this.allocationEquTypes,
     required this.productCategories,
   });

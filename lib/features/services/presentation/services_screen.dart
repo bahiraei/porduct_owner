@@ -3,20 +3,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_adaptive_ui/flutter_adaptive_ui.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
-import 'package:porduct_owner/core/consts/app_colors.dart';
-import 'package:porduct_owner/core/model/port.dart';
-import 'package:porduct_owner/core/model/ship.dart';
 import 'package:porduct_owner/core/model/ship_type.dart';
 import 'package:porduct_owner/core/repository/product_owner_repository.dart';
 import 'package:porduct_owner/core/widgets/error_view.dart';
-import 'package:porduct_owner/features/services/bloc/service_bloc.dart';
-import 'package:porduct_owner/features/services/unload_services_screen.dart';
-
+import 'package:porduct_owner/features/services/presentation/bloc/service_bloc.dart';
+import 'package:porduct_owner/features/services/presentation/unload_services_screen.dart';
 import 'package:responsive_grid_list/responsive_grid_list.dart';
 
-import '../../core/utils/helper.dart';
-import '../../core/utils/routes.dart';
-import '../home_page/widget/home_items.dart';
+import '../../../core/utils/helper.dart';
+import '../../../core/utils/routes.dart';
+import '../../home_page/widget/home_items.dart';
 
 class ServicesScreen extends StatefulWidget {
   const ServicesScreen({super.key});
@@ -26,11 +22,11 @@ class ServicesScreen extends StatefulWidget {
 }
 
 class _ServicesScreenState extends State<ServicesScreen> {
-  PortModel? selectedPort;
+  /*PortModel? selectedPort;
 
   ShipModel? selectedShip;
 
-  TextEditingController shipController = TextEditingController();
+  TextEditingController shipController = TextEditingController();*/
 
   @override
   Widget build(BuildContext context) {
@@ -114,13 +110,13 @@ class _ServicesScreenState extends State<ServicesScreen> {
                     },
                   );
                 } else if (state is ServiceBaseInfoSuccess) {
-                  selectedPort = state.response.ports.isNotEmpty
+                  /* selectedPort = state.response.ports.isNotEmpty
                       ? state.response.ports.first
-                      : null;
+                      : null;*/
                   return Expanded(
                     child: Column(
                       children: [
-                        Padding(
+                        /*Padding(
                           padding: const EdgeInsets.fromLTRB(16, 16, 16, 0),
                           child: Row(
                             children: [
@@ -230,99 +226,56 @@ class _ServicesScreenState extends State<ServicesScreen> {
                               ),
                             ],
                           ),
-                        ),
-                        if (selectedShip != null && selectedPort != null)
-                          Expanded(
-                            child: ResponsiveGridList(
-                              horizontalGridMargin: 12,
-                              verticalGridMargin: 24,
-                              listViewBuilderOptions: ListViewBuilderOptions(
-                                shrinkWrap: true,
+                        ),*/
+                        /*if (selectedShip != null && selectedPort != null)*/
+                        Expanded(
+                          child: ResponsiveGridList(
+                            horizontalGridMargin: 12,
+                            listViewBuilderOptions: ListViewBuilderOptions(
+                              shrinkWrap: true,
+                            ),
+                            minItemWidth: 80,
+                            rowMainAxisAlignment: MainAxisAlignment.start,
+                            minItemsPerRow: 4,
+                            children: [
+                              HomeItems(
+                                routeName: Routes.unloadServices,
+                                arguments: UnloadServicesScreenParam(
+                                  shipTypes: state.response.shipTypes,
+                                  ports: state.response.ports,
+                                  allocationEquTypes:
+                                      state.response.allocationEquTypes,
+                                  productCategories:
+                                      state.response.productCategories,
+                                ),
+                                color: Colors.indigo,
+                                text: "درخواست تخلیه",
+                                child: const Icon(
+                                  Icons.directions_boat,
+                                  color: Colors.white,
+                                ),
                               ),
-                              minItemWidth: 80,
-                              rowMainAxisAlignment: MainAxisAlignment.start,
-                              minItemsPerRow: 4,
-                              children: [
-                                HomeItems(
-                                  routeName: Routes.unloadServices,
-                                  arguments: UnloadServicesScreenParam(
-                                    ship: selectedShip!,
-                                    port: selectedPort!,
-                                    allocationEquTypes:
-                                        state.response.allocationEquTypes,
-                                    productCategories:
-                                        state.response.productCategories,
-                                  ),
-                                  color: Colors.indigo,
-                                  text: "درخواست تخلیه",
-                                  child: const Icon(
-                                    Icons.directions_boat,
-                                    color: Colors.white,
-                                  ),
+                              HomeItems(
+                                color: Colors.green,
+                                text: "درخواست باربری",
+                                child: const Icon(
+                                  Icons.fire_truck_outlined,
+                                  color: Colors.white,
                                 ),
-                                HomeItems(
-                                  color: Colors.green,
-                                  text: "درخواست باربری",
-                                  child: const Icon(
-                                    Icons.fire_truck_outlined,
-                                    color: Colors.white,
-                                  ),
-                                  onTap: () {},
+                                onTap: () {},
+                              ),
+                              HomeItems(
+                                color: Colors.pink,
+                                text: "پاکسازی",
+                                child: const Icon(
+                                  Icons.cleaning_services,
+                                  color: Colors.white,
                                 ),
-                                HomeItems(
-                                  color: Colors.pink,
-                                  text: "پاکسازی",
-                                  child: const Icon(
-                                    Icons.cleaning_services,
-                                    color: Colors.white,
-                                  ),
-                                  onTap: () {},
-                                ),
-                              ],
-                            ),
+                                onTap: () {},
+                              ),
+                            ],
                           ),
-                        if (selectedShip == null || selectedPort == null)
-                          Expanded(
-                            child: Column(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                    color: Colors.orange.withOpacity(0.2),
-                                    borderRadius: BorderRadius.circular(12),
-                                    border: Border.all(
-                                      color: Colors.orange,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  margin: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 24,
-                                  ),
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 24,
-                                  ),
-                                  child: const Row(
-                                    children: [
-                                      Icon(
-                                        Icons.warning,
-                                        color: Colors.orange,
-                                      ),
-                                      Gap(12),
-                                      Flexible(
-                                        child: Text(
-                                          'ابتدا بندر و کشتی مورد نظر خود را انتخاب نمایید',
-                                          style: TextStyle(
-                                            fontSize: 14,
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+                        ),
                       ],
                     ),
                   );

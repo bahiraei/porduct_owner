@@ -27,7 +27,7 @@ final class ServiceShipsStarted extends ServiceEvent {
 
 final class ServiceAddUnloadRequestStarted extends ServiceEvent {
   final int tonnage;
-  final String productCategoryId;
+  final String productId;
   final String pmoNumber;
   final String description;
   final String enterShipFa;
@@ -41,7 +41,7 @@ final class ServiceAddUnloadRequestStarted extends ServiceEvent {
 
   const ServiceAddUnloadRequestStarted({
     required this.tonnage,
-    required this.productCategoryId,
+    required this.productId,
     required this.pmoNumber,
     required this.description,
     required this.enterShipFa,
@@ -54,7 +54,7 @@ final class ServiceAddUnloadRequestStarted extends ServiceEvent {
   @override
   List<Object?> get props => [
         tonnage,
-        productCategoryId,
+        productId,
         pmoNumber,
         description,
         enterShipFa,
@@ -63,4 +63,28 @@ final class ServiceAddUnloadRequestStarted extends ServiceEvent {
         allocationOfEquTypeIds,
         manifestFile,
       ];
+}
+
+final class ServiceLoadUnloadRequestsStarted extends ServiceEvent {
+  final bool isScrolling;
+
+  const ServiceLoadUnloadRequestsStarted({
+    required this.isScrolling,
+  });
+
+  @override
+  List<Object?> get props => [
+        isScrolling,
+      ];
+}
+
+final class ServiceLoadUnloadRequestStarted extends ServiceEvent {
+  final String allocationEquipmentId;
+
+  const ServiceLoadUnloadRequestStarted({
+    required this.allocationEquipmentId,
+  });
+
+  @override
+  List<Object?> get props => [allocationEquipmentId];
 }

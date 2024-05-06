@@ -45,7 +45,8 @@ class FileManagerHandler {
     if (selectedDirectory == null) {
       return null;
     }
-    Helper.log('$selectedDirectory/$name');
-    return '$selectedDirectory/$name';
+    final String safeFileName = name.replaceAll(RegExp(r'[^\w\.-]'), '_');
+    Helper.log('$selectedDirectory/$safeFileName');
+    return '$selectedDirectory/$safeFileName';
   }
 }
