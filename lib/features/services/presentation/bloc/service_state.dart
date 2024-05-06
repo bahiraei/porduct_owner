@@ -74,12 +74,43 @@ final class ServiceLoadUnloadRequestsSuccess extends ServiceState {
       ];
 }
 
-final class ServiceLoadUnloadRequestSuccess extends ServiceState {
+final class ServiceDialogError extends ServiceState {
+  final AppException exception;
+
+  const ServiceDialogError({
+    required this.exception,
+  });
+
+  @override
+  List<Object?> get props => [exception];
+}
+
+final class ServiceLoadUnloadAriaInvoiceLoading extends ServiceState {
+  const ServiceLoadUnloadAriaInvoiceLoading();
+  @override
+  List<Object> get props => [];
+}
+
+final class ServiceLoadUnloadOrgInvoiceLoading extends ServiceState {
+  const ServiceLoadUnloadOrgInvoiceLoading();
+  @override
+  List<Object> get props => [];
+}
+
+final class ServiceLoadUnloadAriaInvoiceSuccess extends ServiceState {
   final Uint8List? ariaBase64;
+
+  const ServiceLoadUnloadAriaInvoiceSuccess({
+    this.ariaBase64,
+  });
+  @override
+  List<Object> get props => [];
+}
+
+final class ServiceLoadUnloadOrgInvoiceSuccess extends ServiceState {
   final Uint8List? orgBase64;
 
-  const ServiceLoadUnloadRequestSuccess({
-    this.ariaBase64,
+  const ServiceLoadUnloadOrgInvoiceSuccess({
     this.orgBase64,
   });
   @override

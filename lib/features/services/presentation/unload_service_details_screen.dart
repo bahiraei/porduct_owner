@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:gap/gap.dart';
 import 'package:porduct_owner/core/repository/product_owner_repository.dart';
 import 'package:porduct_owner/features/services/presentation/bloc/service_bloc.dart';
+import 'package:toastification/toastification.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-import '../../../core/consts/app_colors.dart';
 import '../../../core/consts/app_environment.dart';
+import '../../../core/utils/helper.dart';
 import '../../../core/utils/routes.dart';
-import '../../../core/widgets/error_view.dart';
 import '../../secondary_pdf/secondary_pdf_screen.dart';
 import '../data/model/allocation_equ.dart';
 
@@ -28,13 +29,6 @@ class UnloadServiceDetailsScreen extends StatelessWidget {
           repository: productOwnerRepository,
           context: context,
         );
-        if (allocationEquModel.totalPriceCompany > 0) {
-          bloc.add(
-            ServiceLoadUnloadRequestStarted(
-              allocationEquipmentId: allocationEquModel.id,
-            ),
-          );
-        }
 
         return bloc;
       },
@@ -100,18 +94,34 @@ class UnloadServiceDetailsScreen extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                const Text(
-                                  'نام کشتی',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
+                                const Row(
+                                  children: [
+                                    Icon(Icons.directions_boat_filled_outlined),
+                                    Gap(4),
+                                    Text(
+                                      'نام کشتی',
+                                      style: TextStyle(
+                                        fontSize: 13,
+                                        fontWeight: FontWeight.w600,
+                                      ),
+                                    ),
+                                  ],
                                 ),
-                                Text(
-                                  allocationEquModel.shipShipName,
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
+                                Container(
+                                  padding: const EdgeInsets.symmetric(
+                                    horizontal: 10,
+                                    vertical: 4,
+                                  ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(16),
+                                    color: Colors.blueGrey.withOpacity(0.25),
+                                  ),
+                                  child: Text(
+                                    allocationEquModel.shipShipName,
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -215,7 +225,24 @@ class UnloadServiceDetailsScreen extends StatelessWidget {
                                 if (allocationEquModel
                                         .manifestFilePath?.isEmpty ??
                                     true)
-                                  const Text('ندارد')
+                                  Container(
+                                    padding: const EdgeInsets.symmetric(
+                                      horizontal: 10,
+                                      vertical: 3,
+                                    ),
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(16),
+                                      color: Colors.red.withOpacity(0.25),
+                                    ),
+                                    child: const Text(
+                                      'ثبت نشده',
+                                      style: TextStyle(
+                                        fontSize: 11,
+                                        fontWeight: FontWeight.w300,
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                  ),
                               ],
                             ),
                             const Divider(
@@ -226,14 +253,14 @@ class UnloadServiceDetailsScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text(
-                                  'نوع بار',
+                                  'نوع کالا',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
                                 Text(
-                                  allocationEquModel.productCategoryName ?? '-',
+                                  allocationEquModel.productProductName ?? '-',
                                   style: const TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400,
@@ -356,43 +383,19 @@ class UnloadServiceDetailsScreen extends StatelessWidget {
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
                                 const Text(
-                                  'سهم آریا بنادر',
+                                  'تاریخ درخواست',
                                   style: TextStyle(
                                     fontSize: 13,
                                     fontWeight: FontWeight.w400,
                                   ),
                                 ),
-                                Text(
-                                  allocationEquModel.totalPriceCompanyTitle ??
-                                      '-',
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                              ],
-                            ),
-                            const Gap(5),
-                            const Divider(
-                              color: Colors.black12,
-                            ),
-                            const Gap(5),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                const Text(
-                                  'سهم سازمان',
-                                  style: TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
-                                  ),
-                                ),
-                                Text(
-                                  allocationEquModel.totalPriceCompanyTitle ??
-                                      '-',
-                                  style: const TextStyle(
-                                    fontSize: 13,
-                                    fontWeight: FontWeight.w400,
+                                Flexible(
+                                  child: Text(
+                                    allocationEquModel.createDateFa,
+                                    style: const TextStyle(
+                                      fontSize: 13,
+                                      fontWeight: FontWeight.w400,
+                                    ),
                                   ),
                                 ),
                               ],
@@ -457,292 +460,618 @@ class UnloadServiceDetailsScreen extends StatelessWidget {
                     indent: 24,
                     endIndent: 24,
                   ),
-                  /*ListView(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.fromLTRB(24, 24, 24, 86),
-                    physics: const NeverScrollableScrollPhysics(),
-                    children: [
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context).pushNamed(
-                            Routes.billDetails,
-                            arguments: 1,
-                          );
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: AppColor.shadow,
+                  if (allocationEquModel.state < 1)
+                    Container(
+                      width: double.infinity,
+                      height: 150,
+                      margin: const EdgeInsets.symmetric(
+                        horizontal: 24,
+                        vertical: 28,
+                      ),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(6),
+                      ),
+                      alignment: Alignment.center,
+                      child: const Column(
+                        children: [
+                          Icon(
+                            Icons.receipt,
+                            size: 38,
+                            color: Colors.grey,
                           ),
-                          child: Row(
-                            children: [
-                              Container(
-                                width: 45,
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Icon(
-                                  Icons.receipt,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const Gap(12),
-                              const Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 16),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text('پیش فاکتور سازمان بنادر'),
-                                        ],
-                                      ),
-                                      Gap(8),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'تاریخ صدور: 1402/01/01',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
+                          Gap(24),
+                          Text(
+                            'پیش فاکتوری صادر نشده است',
+                            style: TextStyle(
+                              fontSize: 18,
+                              fontWeight: FontWeight.w700,
+                              color: Colors.grey,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  if (allocationEquModel.state >= 1)
+                    ListView(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.fromLTRB(24, 24, 24, 86),
+                      physics: const NeverScrollableScrollPhysics(),
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 3,
+                              )
                             ],
                           ),
-                        ),
-                      ),
-                      const Gap(16),
-                      InkWell(
-                        onTap: () {
-                          Navigator.of(context)
-                              .pushNamed(Routes.billDetails, arguments: 2);
-                        },
-                        child: Container(
-                          padding: const EdgeInsets.symmetric(horizontal: 16),
-                          decoration: BoxDecoration(
-                            color: Colors.white,
-                            borderRadius: BorderRadius.circular(8),
-                            boxShadow: AppColor.shadow,
-                          ),
-                          child: Row(
+                          child: Column(
                             children: [
-                              Container(
-                                width: 45,
-                                height: 45,
-                                decoration: BoxDecoration(
-                                  color: Colors.blue,
-                                  borderRadius: BorderRadius.circular(8),
-                                ),
-                                child: const Icon(
-                                  Icons.receipt,
-                                  color: Colors.white,
-                                ),
-                              ),
-                              const Gap(12),
-                              const Expanded(
-                                child: Padding(
-                                  padding: EdgeInsets.symmetric(vertical: 16),
-                                  child: Column(
-                                    children: [
-                                      Row(
-                                        children: [
-                                          Text('پیش فاکتور آریا بنادر'),
-                                        ],
-                                      ),
-                                      Gap(8),
-                                      Row(
-                                        children: [
-                                          Text(
-                                            'تاریخ صدور: 1402/01/01',
-                                            style: TextStyle(
-                                              fontSize: 13,
-                                              fontWeight: FontWeight.w400,
-                                              color: Colors.grey,
-                                            ),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),*/
-                  BlocBuilder<ServiceBloc, ServiceState>(
-                    builder: (context, state) {
-                      if (state is ServiceLoadUnloadRequestSuccess) {
-                        return ListView(
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.fromLTRB(24, 24, 24, 86),
-                          physics: const NeverScrollableScrollPhysics(),
-                          children: [
-                            if (state.orgBase64?.isNotEmpty ?? false)
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                    Routes.secondaryPDF,
-                                    arguments: SecondaryPdfScreenParams(
-                                      data: state.orgBase64!,
-                                      name:
-                                          '${allocationEquModel.pmoNumber}-${allocationEquModel.enterShipFa}',
-                                      pageTitle: "پیش فاکتور سازمان بنادر",
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'سازمان بنادر و دریانوردی',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
                                     ),
-                                  );
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 8,
                                   ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    boxShadow: AppColor.shadow,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 38,
-                                        height: 38,
-                                        decoration: BoxDecoration(
-                                          color: Colors.blue,
-                                          borderRadius:
-                                              BorderRadius.circular(8),
-                                        ),
-                                        child: const Icon(
-                                          Icons.receipt,
-                                          color: Colors.white,
-                                          size: 24,
-                                        ),
-                                      ),
-                                      const Gap(12),
-                                      const Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 16),
-                                          child: Column(
-                                            children: [
-                                              Row(
-                                                children: [
-                                                  Flexible(
-                                                    child: Text(
-                                                      ' مشاهده پیش فاکتور سازمان بنادر',
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                      ),
-                                                    ),
+                                  BlocConsumer<ServiceBloc, ServiceState>(
+                                    listener: (context, state) {
+                                      if (state
+                                          is ServiceLoadUnloadOrgInvoiceSuccess) {
+                                        Navigator.of(context).pushNamed(
+                                          Routes.secondaryPDF,
+                                          arguments: SecondaryPdfScreenParams(
+                                            data: state.orgBase64!,
+                                            name:
+                                                '${allocationEquModel.pmoNumber}',
+                                            pageTitle:
+                                                "پیش فاکتور سازمان بنادر",
+                                          ),
+                                        );
+                                      } else if (state is ServiceDialogError) {
+                                        Helper.showToast(
+                                          title: 'خطا!',
+                                          description:
+                                              "خطا در دریافت پیش فاکتور",
+                                          context: context,
+                                          type: ToastificationType.error,
+                                        );
+                                      }
+                                    },
+                                    builder: (context, state) {
+                                      return OutlinedButton(
+                                        onPressed: state
+                                                is ServiceLoadUnloadOrgInvoiceLoading
+                                            ? () {}
+                                            : () {
+                                                BlocProvider.of<ServiceBloc>(
+                                                        context)
+                                                    .add(
+                                                  ServiceLoadUnloadOrgInvoiceStarted(
+                                                    allocationEquipmentId:
+                                                        allocationEquModel.id,
                                                   ),
-                                                ],
+                                                );
+                                              },
+                                        child: state
+                                                is ServiceLoadUnloadOrgInvoiceLoading
+                                            ? const SizedBox(
+                                                width: 16,
+                                                height: 16,
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              )
+                                            : const Text(
+                                                'مشاهده فاکتور',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const Gap(0),
+                              const Divider(
+                                color: Colors.black12,
+                              ),
+                              const Gap(8),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'مبلغ قابل پرداخت',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        allocationEquModel.totalPriceOrgTitle ??
+                                            '0',
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                        textDirection: TextDirection.ltr,
+                                      ),
+                                      const Gap(4),
+                                      const Text(
+                                        'ریال',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                        textDirection: TextDirection.ltr,
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                              const Gap(32),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                  horizontal: 12,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'جهت واریز سهم سازمان بنادر و دریانوردی',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const Gap(16),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text(
+                                          'شماره شبا',
+                                          textDirection: TextDirection.rtl,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              const Text(
+                                                'IR240100004001064504008225',
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              const Gap(6),
+                                              InkWell(
+                                                onTap: () {
+                                                  Clipboard.setData(
+                                                    const ClipboardData(
+                                                      text:
+                                                          "IR240100004001064504008225",
+                                                    ),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons.copy,
+                                                  size: 18,
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ),
-                            if (state.ariaBase64?.isNotEmpty ?? false)
-                              const Gap(16),
-                            if (state.ariaBase64?.isNotEmpty ?? false)
-                              InkWell(
-                                onTap: () {
-                                  Navigator.of(context).pushNamed(
-                                    Routes.secondaryPDF,
-                                    arguments: SecondaryPdfScreenParams(
-                                      data: state.ariaBase64!,
-                                      name:
-                                          '${allocationEquModel.pmoNumber}-${allocationEquModel.enterShipFa}',
-                                      pageTitle: "پیش فاکتور آریا بنادر",
+                                      ],
                                     ),
-                                  );
-                                },
-                                child: Container(
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 16,
-                                    vertical: 8,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: Colors.white,
-                                    borderRadius: BorderRadius.circular(8),
-                                    boxShadow: AppColor.shadow,
-                                  ),
-                                  child: Row(
-                                    children: [
-                                      Container(
-                                        width: 38,
-                                        height: 38,
-                                        decoration: BoxDecoration(
-                                          color: Colors.blue,
-                                          borderRadius:
-                                              BorderRadius.circular(8),
+                                    const Gap(8),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text(
+                                          'مبلغ:',
+                                          textDirection: TextDirection.rtl,
                                         ),
-                                        child: const Icon(
-                                          Icons.receipt,
-                                          color: Colors.white,
-                                          size: 24,
-                                        ),
-                                      ),
-                                      const Gap(12),
-                                      const Expanded(
-                                        child: Padding(
-                                          padding: EdgeInsets.symmetric(
-                                              vertical: 16),
-                                          child: Column(
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
                                             children: [
-                                              Row(
-                                                children: [
-                                                  Flexible(
-                                                    child: Text(
-                                                      'مشاهده پیش فاکتور آریا بنادر',
-                                                      style: TextStyle(
-                                                        fontSize: 14,
-                                                      ),
+                                              Text(
+                                                allocationEquModel
+                                                        .totalPriceOrgTitle ??
+                                                    '0',
+                                                style: const TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                                textDirection:
+                                                    TextDirection.ltr,
+                                              ),
+                                              const Gap(4),
+                                              const Text(
+                                                'ریال',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                                textDirection:
+                                                    TextDirection.ltr,
+                                              ),
+                                              const Gap(8),
+                                              InkWell(
+                                                onTap: () {
+                                                  Clipboard.setData(
+                                                    ClipboardData(
+                                                      text: allocationEquModel
+                                                          .totalPriceOrg
+                                                          .toString(),
                                                     ),
-                                                  ),
-                                                ],
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons.copy,
+                                                  size: 18,
+                                                ),
                                               ),
                                             ],
                                           ),
                                         ),
+                                      ],
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const Gap(24),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 48,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.green,
+                                        ),
+                                        onPressed: () {},
+                                        child: const Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.payment,
+                                            ),
+                                            Gap(4),
+                                            Text(
+                                              'پرداخت آنلاین',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Gap(16),
+                        Container(
+                          padding: const EdgeInsets.fromLTRB(16, 16, 16, 24),
+                          margin: const EdgeInsets.fromLTRB(0, 0, 0, 16),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(6),
+                            color: Colors.white,
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black26,
+                                blurRadius: 3,
+                              )
+                            ],
+                          ),
+                          child: Column(
+                            children: [
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'شرکت آریا بنادر ایرانیان',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                  BlocConsumer<ServiceBloc, ServiceState>(
+                                    listener: (context, state) {
+                                      if (state
+                                          is ServiceLoadUnloadAriaInvoiceSuccess) {
+                                        Navigator.of(context).pushNamed(
+                                          Routes.secondaryPDF,
+                                          arguments: SecondaryPdfScreenParams(
+                                            data: state.ariaBase64!,
+                                            name:
+                                                '${allocationEquModel.pmoNumber}',
+                                            pageTitle:
+                                                "پیش فاکتور آریا بنادر ایرانیان",
+                                          ),
+                                        );
+                                      }
+                                    },
+                                    builder: (context, state) {
+                                      return OutlinedButton(
+                                        onPressed: state
+                                                is ServiceLoadUnloadAriaInvoiceLoading
+                                            ? () {}
+                                            : () {
+                                                BlocProvider.of<ServiceBloc>(
+                                                        context)
+                                                    .add(
+                                                  ServiceLoadUnloadAriaInvoiceStarted(
+                                                    allocationEquipmentId:
+                                                        allocationEquModel.id,
+                                                  ),
+                                                );
+                                              },
+                                        child: state
+                                                is ServiceLoadUnloadAriaInvoiceLoading
+                                            ? const SizedBox(
+                                                width: 16,
+                                                height: 16,
+                                                child:
+                                                    CircularProgressIndicator(),
+                                              )
+                                            : const Text(
+                                                'مشاهده فاکتور',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                  fontWeight: FontWeight.w500,
+                                                ),
+                                              ),
+                                      );
+                                    },
+                                  ),
+                                ],
+                              ),
+                              const Gap(0),
+                              const Divider(
+                                color: Colors.black12,
+                              ),
+                              const Gap(8),
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  const Text(
+                                    'مبلغ قابل پرداخت',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                    ),
+                                  ),
+                                  Row(
+                                    mainAxisAlignment: MainAxisAlignment.end,
+                                    children: [
+                                      Text(
+                                        allocationEquModel
+                                                .totalPriceCompanyTitle ??
+                                            '0',
+                                        style: const TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                        textDirection: TextDirection.ltr,
+                                      ),
+                                      const Gap(4),
+                                      const Text(
+                                        'ریال',
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                        ),
+                                        textDirection: TextDirection.ltr,
                                       ),
                                     ],
                                   ),
+                                ],
+                              ),
+                              const Gap(32),
+                              Container(
+                                padding: const EdgeInsets.symmetric(
+                                  vertical: 16,
+                                  horizontal: 12,
+                                ),
+                                decoration: BoxDecoration(
+                                  color: Colors.blue.withOpacity(0.3),
+                                  borderRadius: BorderRadius.circular(4),
+                                  border: Border.all(
+                                    color: Colors.blue,
+                                  ),
+                                ),
+                                child: Column(
+                                  children: [
+                                    const Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'جهت واریز سهم شرکت آریا بنادر ایرانیان',
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const Gap(16),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text(
+                                          'شماره شبا',
+                                          textDirection: TextDirection.rtl,
+                                          style: TextStyle(
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              const Text(
+                                                'IR760180000000377801176611',
+                                                textDirection:
+                                                    TextDirection.rtl,
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                              ),
+                                              const Gap(6),
+                                              InkWell(
+                                                onTap: () {
+                                                  Clipboard.setData(
+                                                    const ClipboardData(
+                                                      text:
+                                                          "IR760180000000377801176611",
+                                                    ),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons.copy,
+                                                  size: 18,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                    const Gap(8),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        const Text(
+                                          'مبلغ:',
+                                          textDirection: TextDirection.rtl,
+                                        ),
+                                        Expanded(
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                allocationEquModel
+                                                        .totalPriceCompanyTitle ??
+                                                    '0',
+                                                style: const TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                                textDirection:
+                                                    TextDirection.ltr,
+                                              ),
+                                              const Gap(4),
+                                              const Text(
+                                                'ریال',
+                                                style: TextStyle(
+                                                  fontSize: 14,
+                                                ),
+                                                textDirection:
+                                                    TextDirection.ltr,
+                                              ),
+                                              const Gap(8),
+                                              InkWell(
+                                                onTap: () {
+                                                  Clipboard.setData(
+                                                    ClipboardData(
+                                                      text: allocationEquModel
+                                                          .totalPriceCompany
+                                                          .toString(),
+                                                    ),
+                                                  );
+                                                },
+                                                child: const Icon(
+                                                  Icons.copy,
+                                                  size: 18,
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ],
                                 ),
                               ),
-                            const Gap(64),
-                          ],
-                        );
-                      } else if (state is ServiceLoading) {
-                        return const CircularProgressIndicator();
-                      } else if (state is ServiceInitial) {
-                        return const SizedBox();
-                      } else if (state is ServiceError) {
-                        return ErrorView(
-                          isExpanded: false,
-                          message: state.exception.message,
-                          onRetry: () {},
-                        );
-                      }
-
-                      throw Exception('state $state not found');
-                    },
-                  ),
+                              const Gap(24),
+                              Row(
+                                children: [
+                                  Expanded(
+                                    child: SizedBox(
+                                      width: MediaQuery.of(context).size.width,
+                                      height: 48,
+                                      child: ElevatedButton(
+                                        style: ElevatedButton.styleFrom(
+                                          backgroundColor: Colors.green,
+                                        ),
+                                        onPressed: () {},
+                                        child: const Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.center,
+                                          children: [
+                                            Icon(
+                                              Icons.payment,
+                                            ),
+                                            Gap(4),
+                                            Text(
+                                              'پرداخت آنلاین',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                                fontSize: 14,
+                                              ),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                        const Gap(64),
+                      ],
+                    ),
                   const Gap(64),
                 ],
               ),

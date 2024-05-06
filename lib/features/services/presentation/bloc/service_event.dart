@@ -78,13 +78,22 @@ final class ServiceLoadUnloadRequestsStarted extends ServiceEvent {
       ];
 }
 
-final class ServiceLoadUnloadRequestStarted extends ServiceEvent {
+final class ServiceLoadUnloadAriaInvoiceStarted extends ServiceEvent {
   final String allocationEquipmentId;
 
-  const ServiceLoadUnloadRequestStarted({
+  const ServiceLoadUnloadAriaInvoiceStarted({
     required this.allocationEquipmentId,
   });
-
   @override
-  List<Object?> get props => [allocationEquipmentId];
+  List<Object> get props => [allocationEquipmentId];
+}
+
+final class ServiceLoadUnloadOrgInvoiceStarted extends ServiceEvent {
+  final String allocationEquipmentId;
+
+  const ServiceLoadUnloadOrgInvoiceStarted({
+    required this.allocationEquipmentId,
+  });
+  @override
+  List<Object> get props => [allocationEquipmentId];
 }

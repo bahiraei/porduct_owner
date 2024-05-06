@@ -26,10 +26,12 @@ class AllocationEquModel {
   final String enterShipFa;
   final String? pmoNumber;
 
-  final String? productCategoryName;
+  final String? productProductName;
 
   final String? productCategoryId;
   final String shipShipName;
+  final String createDateFa;
+  final String? personelOwnerFullName;
   final String shipId;
 
   AllocationEquModel({
@@ -51,16 +53,20 @@ class AllocationEquModel {
     required this.tonnage,
     required this.enterShipFa,
     this.pmoNumber,
-    this.productCategoryName,
+    this.productProductName,
     this.productCategoryId,
     required this.shipShipName,
     required this.shipId,
+    required this.createDateFa,
+    this.personelOwnerFullName,
   });
 
   factory AllocationEquModel.fromJson(dynamic json) {
     return AllocationEquModel(
       id: json['id'],
       manifestFilePath: json['manifestFilePath'],
+      createDateFa: json['createDateFa'],
+      personelOwnerFullName: json['personelOwnerFullName'],
       companyOwnerCompanyName: json['companyOwnerCompanyName'],
       companyOwnerId: json['companyOwnerId'],
       stateTitle: json['stateTitle'],
@@ -77,7 +83,7 @@ class AllocationEquModel {
       tonnage: json['tonnage'],
       enterShipFa: json['enterShipFa'],
       pmoNumber: json['pmoNumber'],
-      productCategoryName: json['productCategoryName'],
+      productProductName: json['productProductName'],
       productCategoryId: json['productCategoryId'],
       shipShipName: json['shipShipName'],
       shipId: json['shipId'],

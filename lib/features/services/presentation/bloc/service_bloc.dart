@@ -175,21 +175,41 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
             emit(ServiceError(exception: exception));
           }
         }
-      } else if (event is ServiceLoadUnloadRequestStarted) {
+      } else if (event is ServiceLoadUnloadAriaInvoiceStarted) {
         try {
-          emit(ServiceLoading());
+          emit(const ServiceLoadUnloadAriaInvoiceLoading());
 
           final aria = await repository.getReportAllocationEquAriaBase64File(
             allocationEquipmentId: event.allocationEquipmentId,
           );
 
+          emit(ServiceLoadUnloadAriaInvoiceSuccess(
+            ariaBase64:
+                (aria?.isNotEmpty ?? false) ? base64Decode(aria!) : null,
+          ));
+        } catch (e) {
+          final exception = await ExceptionHandler.handleDioError(e);
+          if (exception is UnauthorizedException) {
+            await authRepository.signOut().then((value) {
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                Routes.splash,
+                (route) => false,
+              );
+            });
+          } else {
+            isLoading = false;
+            emit(ServiceDialogError(exception: exception));
+          }
+        }
+      } else if (event is ServiceLoadUnloadOrgInvoiceStarted) {
+        try {
+          emit(const ServiceLoadUnloadOrgInvoiceLoading());
+
           final org = await repository.getReportAllocationEquOrgBase64File(
             allocationEquipmentId: event.allocationEquipmentId,
           );
 
-          emit(ServiceLoadUnloadRequestSuccess(
-            ariaBase64:
-                (aria?.isNotEmpty ?? false) ? base64Decode(aria!) : null,
+          emit(ServiceLoadUnloadOrgInvoiceSuccess(
             orgBase64: (org?.isNotEmpty ?? false) ? base64Decode(org!) : null,
           ));
         } catch (e) {
@@ -203,7 +223,7 @@ class ServiceBloc extends Bloc<ServiceEvent, ServiceState> {
             });
           } else {
             isLoading = false;
-            emit(ServiceError(exception: exception));
+            emit(ServiceDialogError(exception: exception));
           }
         }
       }

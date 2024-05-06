@@ -13,8 +13,6 @@ import 'package:porduct_owner/features/vessels/vessels_screen.dart';
 
 import '../../features/auth/presentation/auth_with_pass.dart';
 import '../../features/auth/presentation/login_screen.dart';
-import '../../features/bill/bill_details_screen.dart';
-import '../../features/bill/bill_screen.dart';
 import '../../features/home/presentation/home_screen.dart';
 import '../../features/pdf/pdf_screen.dart';
 import '../../features/secondary_pdf/secondary_pdf_screen.dart';
@@ -89,16 +87,6 @@ class Routes {
 
       case ship:
         return screenRouting(const ShipScreen());
-
-      case billDetails:
-        return screenRouting(
-          BillDetailsScreen(
-            id: settings.arguments as int,
-          ),
-        );
-
-      case bill:
-        return screenRouting(const BillScreen());
 
       case shipTimeSheet:
         return screenRouting(const ShipTimeSheetScreen());
